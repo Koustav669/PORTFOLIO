@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Dive | Koustav Das</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+      --bg-color: #050816;
+      --card-color: rgba(255, 255, 255, 0.05);
+      --text-color: #d1e8ff;
+      --accent1: #00f0ff;
+      --accent2: #7a66ff;
+      --accent3: #ff007c;
+      --glow: 0 0 15px rgba(0, 240, 255, 0.5);
+    }
+
+    /* Prevent typing text from overflowing / overwriting header layout */
+    #role-text{
+      display:inline-block;
+      max-width:500px;  /* Increased from 400px */
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      vertical-align:middle;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .role-cursor{ display:inline-block; vertical-align:middle; margin-left:8px; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0a1635, #050816 70%);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+
+    
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Ensure headings are visible when sticky header/nav present */
+    main, .page-title, .section-title {
+      scroll-margin-top: 200px;
+    }
+
+    /* Add extra top padding so content begins below nav on pages where nav is sticky */
+    body:not(.home-page) main { padding-top: 30px; }
+
+    h1.page-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: var(--accent1);
+      margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      animation: glowText 3s ease-in-out infinite alternate;
+    }
+
+    .technical { font-family: 'Orbitron', sans-serif; color: var(--accent1); }
+    .core { font-family: 'Rajdhani', sans-serif; color: var(--accent2); letter-spacing: 1px; }
+    .tools { font-family: 'Audiowide', sans-serif; color: #00ffa1; }
+    .soft { font-family: 'Cinzel', serif; color: var(--accent3); }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 6px;
+      box-shadow: var(--glow);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-card {
+      background: var(--card-color);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    .skill-icon {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: var(--accent1);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 5px var(--accent1), 0 0 10px var(--accent2); }
+      to { text-shadow: 0 0 20px var(--accent2), 0 0 30px var(--accent1); }
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--accent1), var(--accent2));
+      z-index: -1;
+      filter: blur(25px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      color: #89a8ff;
+      padding: 40px 0 20px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Replace the existing header-related CSS in your style section */
+
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;  /* Increased from 1100px */
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    #role-text {
+      display: inline-block;
+      max-width: 500px;  /* Increased from 400px */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 520px;  /* Increased from 440px */
+      justify-content: flex-end;
+    }
+
+    /* Update media queries for better responsive behavior */
+    @media (max-width: 1200px) {
+      #role-text {
+        max-width: 400px;
+      }
+      .brand-right {
+        min-width: 420px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #role-text {
+        max-width: 300px;
+      }
+      .brand-right {
+        min-width: 320px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #role-text {
+        max-width: 220px;
+      }
+      .brand-right {
+        min-width: 240px;
+      }
+      .brand-name {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER + NAVIGATION ===== -->
+   <header class="site-header">
+    <div class="header-inner header-brand">
+      <div class="brand-left">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent" aria-hidden="true"></span>
+      </div>
+      <div class="brand-right">
+        <span class="sr-only">Coder/Editor/Developer</span>
+        <span id="role-text" aria-hidden="true"></span>
+        <span class="role-cursor" id="role-cursor" aria-hidden="true">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="hero-nav">
+        <ul>
+            <li><a href="portfolio.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="skills.html" class="active">Skills</a></li>
+            <li><a href="deepdive.html">DeepDive</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+  <main>
+    <h1 class="page-title">My Skills</h1>
+
+    <section>
+      <div class="section-title technical">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-name">C</div></div>
+        <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">C++</div></div>
+        <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
+        <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">Data Structures & Algorithms</div></div>
+        <div class="skill-card"><div class="skill-icon">🏗️</div><div class="skill-name">OOP</div></div>
+        <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">DBMS</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title core">Core Computing & Research</div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">🔢</div><div class="skill-name">Algorithm Optimization</div></div>
+        <div class="skill-card"><div class="skill-icon">📐</div><div class="skill-name">Mathematical Modelling</div></div>
+        <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">Basic Machine Learning Concepts</div></div>
+        <div class="skill-card"><div class="skill-icon">🧩</div><div class="skill-name">Problem-Solving Techniques</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title tools">Tools & Environment</div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">🧰</div><div class="skill-name">VS Code</div></div>
+        <div class="skill-card"><div class="skill-icon">🦠</div><div class="skill-name">Git</div></div>
+        <div class="skill-card"><div class="skill-icon">🐙</div><div class="skill-name">GitHub</div></div>
+        <div class="skill-card"><div class="skill-icon">🐧</div><div class="skill-name">Ubuntu</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title soft">Soft Skills</div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">🤝</div><div class="skill-name">Team Collaboration</div></div>
+        <div class="skill-card"><div class="skill-icon">🕒</div><div class="skill-name">Time Management</div></div>
+        <div class="skill-card"><div class="skill-icon">💡</div><div class="skill-name">Creative Problem Solving</div></div>
+        <div class="skill-card"><div class="skill-icon">🌱</div><div class="skill-name">Adaptability</div></div>
+        <div class="skill-card"><div class="skill-icon">🔥</div><div class="skill-name">Self-Discipline</div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 19 October 2025</p>
+  </footer>
+
+  <script>
+  (function(){
+    // guard to prevent double initialization / overwrite when multiple scripts exist
+    if (window.__headerTypingInitialized) return;
+    window.__headerTypingInitialized = true;
+
+    const roles = ['Coder','Editor', 'Machine learning Enthusiast', 'Developer'];
+    const el = document.getElementById('role-text');
+    const cur = document.getElementById('role-cursor');
+    if (!el || !cur) return; // abort if header elements missing
+
+    let i=0, j=0, deleting=false;
+    function tick(){
+      const full = roles[i];
+      if(!deleting){
+        j++; el.textContent = full.slice(0,j);
+        if(j === full.length){ deleting=true; setTimeout(tick,1400); return; }
+      } else {
+        j--; el.textContent = full.slice(0,j);
+        if(j===0){ deleting=false; i=(i+1)%roles.length; setTimeout(tick,300); return; }
+      }
+      setTimeout(tick,deleting?80:140);
+    }
+    tick();
+  })();
+  </script>
+  <script>
+    // only load external fallback script if typing wasn't initialized above
+    if (!window.__headerTypingInitialized) {
+      const s = document.createElement('script');
+      s.src = 'header-typing.js';
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  </script>
+</body>
+</html>

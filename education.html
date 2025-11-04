@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Journey | Koustav Das</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .education-timeline {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, #00f0ff, #7a66ff);
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .timeline-item {
+            width: 50%;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 40px;
+            margin-left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 40px;
+            margin-left: 50%;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.12);
+        }
+
+        .timeline-date {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f0ff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .timeline-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #8ef0ff;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: #dfeffb;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #00f0ff;
+            border-radius: 50%;
+            top: 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-item:nth-child(odd) .dot {
+            right: -48px;
+        }
+
+        .timeline-item:nth-child(even) .dot {
+            left: -48px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 240, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 20px !important;
+            }
+            .dot {
+                left: 22px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+    <div class="header-inner">
+        <div class="header-brand">
+            <div class="brand-left">
+                <h1 class="brand-name">Koustav Das</h1>
+                <div class="brand-accent"></div>
+            </div>
+            <div class="brand-right">
+                <div class="brand-right">
+        <span class="sr-only">Coder/Editor/Developer/machine learning enthusiast</span>
+        <span id="role-text" aria-hidden="true"></span>
+        <span class="role-cursor" id="role-cursor" aria-hidden="true">▍</span>
+      </div>
+                </div>
+            </div>
+        </div>
+</header>
+
+    <nav class="hero-nav">
+        <ul>
+            <li><a href="portfolio.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="deepdive.html">DeepDive</a></li>
+            <li><a href="education.html" class="active">Education</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="education-timeline">
+        <div class="timeline">
+            <div class="timeline-item" style="animation-delay: 0.3s">
+                <div class="timeline-content">
+                    <div class="timeline-date">2016 - 2024</div>
+                    <h3 class="timeline-title">Belur High School</h3>
+                    <p class="timeline-desc">Completed my secondary and higher secondary education with excellence in academics and extracurricular activities. Developed strong foundation in science and mathematics.</p>
+                </div>
+                <div class="dot"></div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.6s">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025 - 2029</div>
+                    <h3 class="timeline-title">Indian Institute of Information Technology Kalyani</h3>
+                    <p class="timeline-desc">Pursuing B.Tech in Computer Science and Engineering. Focusing on cutting-edge technologies, software development, and building innovative solutions for real-world problems.</p>
+                </div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Built with precision and pride <br> last updated 11th october 2025</p>
+    </footer>
+</body>
+<script src="header-typing.js"></script>
+</html>
