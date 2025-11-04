@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Koustav</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner header-brand">
+      <div class="brand-left">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent" aria-hidden="true"></span>
+      </div>
+    </div>
+    <nav class="hero-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="portfolio.html">Home</a></li>
+        <li><a href="PROJECTS.html">Projects</a></li>
+        <li><a href="SKILLS.html">Skills</a></li>
+        <li><a href="DEEPDIVES.html">DeepDive</a></li>
+        <li><a href="EDUCATION.html">Education</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contact-page" style="padding:48px 20px; max-width:900px; margin:0 auto;">
+    <h1 class="contact-title">Get in touch</h1>
+    <div class="contact-info" style="margin-bottom:18px; color:#dfeffb;">
+      <p><strong>Email:</strong> <a href="mailto:daskoustav88@gamil.com">daskoustav88@gamil.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+918100398413">+91 81003 98413</a></p>
+    </div>
+
+    <form id="contact-form" class="contact-form" aria-label="Contact form">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">Your Email</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit" class="btn primary">Send</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+  </footer>
+
+  <script>
+  // contact form handler - submits via fetch to a form endpoint (no mail client)
+  // Replace FORM_ENDPOINT with your Formspree or other form endpoint URL.
+  // Example Formspree endpoint: https://formspree.io/f/yourFormId
+  (function(){
+    const form = document.getElementById('contact-form');
+    const status = document.createElement('div');
+    status.className = 'form-status';
+    form.appendChild(status);
+
+    const FORM_ENDPOINT = 'https://formspree.io/f/yourFormId'; // <-- replace this with your endpoint
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      status.textContent = '';
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          status.textContent = 'Message sent — thank you!';
+          status.classList.add('success');
+          form.reset();
+        } else {
+          const json = await res.json().catch(()=>null);
+          status.textContent = (json && json.error) ? json.error : 'There was an error sending your message. Try again.';
+          status.classList.add('error');
+        }
+      } catch (err) {
+        status.textContent = 'Network error — please try again later.';
+        status.classList.add('error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+      }
+    });
+  })();
+  </script>
+  <script src="nav-active.js"></script>
+</body>
+</html>

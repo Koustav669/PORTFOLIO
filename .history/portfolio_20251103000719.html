@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- AI Background Styles -->
+  <link rel="stylesheet" href="ai-bg.css" />
+
+  <!-- Sticky Header Styles -->
+  <link rel="stylesheet" href="sticky_header.css">
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner header-brand">
+      <div class="brand-left">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent" aria-hidden="true"></span>
+      </div>
+      <div class="brand-right">
+        <span class="sr-only">Coder/Editor/Developer/machine learning enthusiast</span>
+        <span id="role-text" aria-hidden="true"></span>
+        <span class="role-cursor" id="role-cursor" aria-hidden="true">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. This isn’t a portfolio — it’s proof of obsession.</p>
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+      <nav class="hero-nav">
+        <ul>
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="Gallery">
+    <div align="center"><h1>Gallery</h1></div>
+    <div class="slider">
+      <div class="slides">
+        <img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo">
+        <img src="images/pic2.jpg" alt="Featured 2">
+        <img src="images/pic3.jpg" alt="Featured 3">
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>last updated 11th October 2025</p>
+  </footer>
+
+  <!-- ===== AI NEURAL BACKGROUND ===== -->
+  <canvas id="ai-bg-canvas" aria-hidden="true"></canvas>
+  <div class="ai-bg-overlay" aria-hidden="true"></div>
+  <div class="ai-bg-retina" aria-hidden="true"></div>
+
+  <!-- ===== JAVASCRIPT FILES ===== -->
+  <script src="slider.js"></script>
+  <script src="hanoi.js"></script>
+  <script src="header-typing.js"></script>
+  <script src="nav-active.js"></script>
+  <script src="ai-bg.js" defer></script>
+  <script src="sticky_header.js"></script>
+</body>
+</html>

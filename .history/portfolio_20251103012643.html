@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- External ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    /* ===== BASIC SETUP ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0e0e0e;
+      color: white;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== HEADER SECTION (NO SCROLL EFFECT) ===== */
+    .header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    /* === Line animation below name === */
+    .underline {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border-radius: 10px;
+      animation: linePulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes linePulse {
+      0% {
+        transform: scaleX(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scaleX(1.8);
+        opacity: 1;
+      }
+    }
+
+    /* ===== SCROLL SECTIONS ===== */
+    .about, .projects, .contact {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER (Excluded from ScrollReveal) -->
+  <section class="header">
+    <h1>Koustav Dev</h1>
+    <div class="underline"></div>
+  </section>
+
+  <!-- OTHER SECTIONS (Scroll Reveal applies here) -->
+  <section class="about">About Section</section>
+  <section class="projects">Projects Section</section>
+  <section class="contact">Contact Section</section>
+
+  <script>
+    // ====== SCROLL REVEAL SETUP ======
+    ScrollReveal({
+      distance: "50px",
+      duration: 1200,
+      delay: 200,
+      reset: false // no re-animation on scroll back up
+    });
+
+    // Apply only on non-header sections
+    ScrollReveal().reveal('.about, .projects, .contact', { 
+      origin: "bottom",
+      interval: 150 
+    });
+  </script>
+</body>
+</html>

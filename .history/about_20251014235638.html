@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — Dev (Kolkata)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+    <div class="header-inner header-brand">
+      <div class="brand-left">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent" aria-hidden="true"></span>
+      </div>
+      <div class="brand-right">
+        <span class="static-role" aria-hidden="true">Coder / Editor</span>
+      </div>
+    </div>
+    <!-- site menu (reused from portfolio) -->
+    <nav class="hero-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="portfolio.html">Home</a></li>
+        <li><a href="PROJECTS.html">Projects</a></li>
+        <li><a href="SKILLS.html">Skills</a></li>
+        <li><a href="DEEPDIVES.html">DeepDive</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="about-page">
+    <section class="about-hero">
+      <h1 class="about-title">About Me</h1>
+      <p class="about-lead">Curious, disciplined and always learning — a Computer Science student from Kolkata who loves solving problems with elegant code.</p>
+    </section>
+
+    <section class="about-grid">
+      <article class="about-card" data-index="1">
+        <h2>Who I Am</h2>
+        <p>I’m Dev, a curious and ambitious Computer Science student from Kolkata. Passionate about coding, problem-solving, and logical thinking. Constantly exploring new programming challenges and improving skills.</p>
+      </article>
+
+      <article class="about-card" data-index="2">
+        <h2>My Skills &amp; Expertise</h2>
+        <p>Proficient in C and C++. Strong in algorithms, data structures, and computational problem-solving. Enjoy tackling complex logic problems and optimizing solutions.</p>
+      </article>
+
+      <article class="about-card" data-index="3">
+        <h2>My Passion &amp; Drive</h2>
+        <p>Thrives on challenges and pushing personal limits. Loves combining creativity with logic in every project. Discipline, patience, and consistency guide my journey.</p>
+      </article>
+
+      <article class="about-card" data-index="4">
+        <h2>Beyond Coding</h2>
+        <p>Always curious to learn new things, whether technical or personal development. Enjoy solving real-world problems and applying logic outside of programming. Actively improving analytical thinking and problem-solving skills.</p>
+      </article>
+
+      <article class="about-card" data-index="5">
+        <h2>My Vision &amp; Motto</h2>
+        <p>Aim: Build strong foundational skills and excel in high-level computational problem-solving. Motto: “Focus on skill, impact, and consistent growth.” Believe in delivering practical, efficient, and well-thought-out solutions.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+  </footer>
+
+  <script>
+  // small reveal animation for cards when visible
+  (function(){
+    const cards = document.querySelectorAll('.about-card');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting) { e.target.classList.add('in'); }
+      });
+    }, { threshold: 0.18 });
+    cards.forEach(c=>io.observe(c));
+  })();
+  </script>
+</body>
+</html>

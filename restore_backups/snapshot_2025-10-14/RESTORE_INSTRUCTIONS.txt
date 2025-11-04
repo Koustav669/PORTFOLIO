@@ -1,0 +1,16 @@
+Restore instructions:
+1) To restore this snapshot, copy the files from this folder to the workspace root (F:\\PORTFOLIO), overwriting existing files:
+   - portfolio.html
+   - style.css
+   - slider.js
+
+2) Confirm assets (images) are present in `portifolio_home_pictures/` and `images/`.
+
+3) Optionally create a backup of the current workspace before restoring.
+
+Example (PowerShell):
+cp .\portfolio.html ..\..
+cp .\style.css ..\..
+cp .\slider.js ..\..\
+
+(These commands assume you `cd` into the snapshot folder first.)

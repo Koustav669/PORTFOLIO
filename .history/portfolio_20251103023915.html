@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- AI Background Styles -->
+  <link rel="stylesheet" href="ai-bg.css" />
+
+  <!-- Sticky Header Styles -->
+  <link rel="stylesheet" href="sticky_header.css">
+
+  <style>
+    /* 🔹 Animated underline below the name */
+    .brand-accent-line {
+      display: block;
+      width: 90px;
+      height: 3px;
+      margin: 6px auto 0;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border-radius: 10px;
+      animation: pulseLine 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseLine {
+      0% {
+        transform: scaleX(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scaleX(1.8);
+        opacity: 1;
+      }
+    }
+
+    /* 🔹 Gallery Image Fix */
+    #Gallery {
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    /* Each slide is a full-width panel that centers the image */
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      align-items: center;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #03060a;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 500px; /* cap height to maintain uniform look */
+      width: auto;
+      height: auto;
+      object-fit: contain; /* no cropping or stretching */
+      border-radius: 10px;
+      display: block;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-size: 2rem;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .gallery-title h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body class="home-page">
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-name">Koustav Das</span>
+        <!-- 🔹 animated underline added here -->
+        <span class="brand-accent-line" aria-hidden="true"></span>
+      </div>
+      <div class="role">
+        <span class="sr-only">Coder / Editor / Developer / Machine Learning Enthusiast</span>
+        <span id="role-text" aria-hidden="true"></span>
+        <span class="role-cursor" id="role-cursor" aria-hidden="true">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. This isn’t a portfolio — it’s proof of obsession.</p>
+
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+
+      <nav class="hero-nav">
+        <ul>
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="Gallery">
+    <div class="gallery-title">
+      <h1>Gallery</h1>
+    </div>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide"><img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo"></div>
+        <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
+        <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 11th October 2025</p>
+  </footer>
+
+  <!-- ===== AI BACKGROUND ===== -->
+  <canvas id="ai-bg-canvas" aria-hidden="true"></canvas>
+  <div class="ai-bg-overlay" aria-hidden="true"></div>
+  <div class="ai-bg-retina" aria-hidden="true"></div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="slider.js"></script>
+  <script src="hanoi.js"></script>
+  <script src="header-typing.js"></script>
+  <script src="nav-active.js"></script>
+  <script src="ai-bg.js" defer></script>
+  <script src="sticky_header.js"></script>
+</body>
+</html>

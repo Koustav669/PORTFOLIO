@@ -1,0 +1,20 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.9); /* transparent dark look */
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* thoda breathing space do baki content ko */
+body {
+  padding-top: 100px; /* adjust this height = header height */
+}
+.scrolled {
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}

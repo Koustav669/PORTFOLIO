@@ -1,0 +1,44 @@
+/* ai-bg.css
+   Full-screen ultra-realistic mesh background styles.
+   Keeps canvas behind page content and non-interactive.
+   Exposes a few CSS variables for quick tuning.
+*/
+
+
+:root{
+  --ai-bg-z-index: -2;
+  --ai-bg-base-color: #05060a; /* overall page base */
+  --ai-bg-overlay-alpha: 0.12; /* overlay darkness */
+}
+
+#ai-bg-canvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  z-index:var(--ai-bg-z-index);
+  pointer-events:none; /* never capture mouse/touch */
+  display:block;
+  will-change: transform; /* hint for performance */
+  /* reduce any potential bleed by using lower composite operations in JS */
+}
+
+/* Ensure body background remains dark without altering layout */
+body{
+  position:relative;
+  background: var(--ai-bg-base-color);
+}
+
+/* Subtle overlay to enhance contrast on top of canvas */
+.ai-bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:calc(var(--ai-bg-z-index) + 1);
+  pointer-events:none;
+  /* glass-like overlay to keep text readable: translucent + blur */
+  background: rgba(6,10,16,0.06);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  mix-blend-mode: normal;
+  border-top: 1px solid rgba(255,255,255,0.02);
+}

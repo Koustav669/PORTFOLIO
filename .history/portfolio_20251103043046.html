@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ai-bg.css" />
+  <link rel="stylesheet" href="sticky_header.css" />
+
+  <style>
+    /* ---------- Base ---------- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ---------- Header / BG ---------- */
+    .site-header::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('portifolio_home_pictures/header_BG.png') top center no-repeat;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10,10,25,0.25);
+      backdrop-filter: blur(8px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 99999;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-inner { width: 100%; max-width: 1200px; margin: 0 auto; display:flex; align-items:center; justify-content:space-between; gap: 18px; }
+    .brand { display:flex; align-items:center; gap: 12px; }
+    .brand-name { color:#d9faff; font-weight:700; font-family:'Inter',sans-serif; letter-spacing:0.6px; }
+    .brand-accent-line { width:90px; height:3px; border-radius:10px; background: linear-gradient(90deg,#0015ff,#00aaff); box-shadow: 0 0 25px #0077ff, 0 0 70px #004cff, 0 0 120px #00eaff; }
+
+    .role { color:#bdeaff; font-family:'Poppins',sans-serif; display:flex; align-items:center; gap:6px; }
+
+    /* ---------- Hero (Centered) ---------- */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      padding: 0 20px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .hero-inner { max-width: 900px; width:100%; margin: 0 auto; }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #d9faff;
+      text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+      margin: 10px 0 6px;
+      animation: shockFlicker 3s infinite steps(1,end);
+    }
+    @keyframes shockFlicker {
+      0%,85%,100% { text-shadow: 0 0 25px #009dff,0 0 60px #0077ff,0 0 120px #00eaff; transform:none;}
+      88%,90%,92% { text-shadow:0 0 50px #00ffff,0 0 150px #00eaff,0 0 250px #00ffff; transform:translateX(1px) skewX(.5deg);}
+    }
+
+    .hero-sub {
+      font-family:'Poppins',sans-serif;
+      font-size:1.2rem;
+      color:#33ccff;
+      margin-bottom:20px;
+      text-shadow: 0 0 25px #00baff, 0 0 60px #00e0ff, 0 0 120px #33ccff;
+      animation: electricHum 3.5s infinite ease-in-out;
+    }
+    @keyframes electricHum { 0%,100%{opacity:1;}50%{opacity:0.85;} }
+
+    .hero-intro {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      margin: 18px auto 30px;
+      line-height: 1.7;
+      color: #bdeaff;
+      text-shadow: 0 0 10px rgba(0,150,255,0.4);
+      white-space: pre-wrap;
+      display: block;
+      max-width: 900px;
+    }
+
+    .hero-cta { margin-bottom: 15px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn { text-decoration:none; padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:#cfefff; font-family:'Poppins',sans-serif; }
+
+    /* ---------- Typing styles ---------- */
+    .type-output { display: inline; font-family: inherit; color: inherit; }
+    .type-cursor {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 6px;
+      animation: blink 1s steps(2,start) infinite;
+      font-weight: 700;
+      color: #bdeaff;
+      transform: translateY(-2px);
+    }
+    @keyframes blink { 0%{opacity:1}50%{opacity:0}100%{opacity:1} }
+
+    /* ms-word highlight */
+    .msword-bold { display:inline-block; font-weight:700; transform-origin:left center; transition: transform .26s ease, text-shadow .26s ease; text-shadow:0 0 12px rgba(255,255,255,0.15); }
+    .msword-bold.pop { transform: scale(1.22); text-shadow:0 0 24px rgba(0,200,255,0.45); color:#fff; }
+
+    /* ---------- Gallery / Slider ---------- */
+    #Gallery { text-align:center; padding:60px 0; }
+    .slider { position:relative; width:90%; max-width:1000px; margin:0 auto; overflow:hidden; border-radius:15px; }
+    .slides { display:flex; transition: transform .5s ease-in-out; align-items:center; }
+    .slide { flex:0 0 100%; display:flex; align-items:center; justify-content:center; background:#03060a; padding:12px; }
+    .slide img { max-width:100%; max-height:500px; object-fit:contain; border-radius:10px; }
+
+    .prev,.next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:#fff; font-size:2rem; border:none; padding:10px 15px; cursor:pointer; border-radius:50%; transition:.3s; }
+    .prev:hover,.next:hover { background:rgba(0,0,0,0.7); }
+    .prev { left:10px } .next { right:10px }
+
+    .gallery-title h1 { font-size:2.5rem; color:#aeefff; text-shadow:0 0 15px #007bff,0 0 30px #004cff; margin-bottom:30px; }
+
+    /* Responsive tweaks */
+    @media (max-width:720px){
+      .hero-title { font-size:2rem; }
+      .hero-intro { font-size:1.05rem; }
+    }
+  </style>
+</head>
+
+<body class="home-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent-line"></span>
+      </div>
+      <div class="role">
+        <span id="role-text"></span>
+        <span class="role-cursor" id="role-cursor">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- original content preserved verbatim for a11y -->
+      <p class="hero-intro" id="heroIntro" aria-live="polite" aria-atomic="true">
+        Hi, I’m <strong>Koustav Das</strong> — an AI &amp; Machine Learning visionary crafting systems that think, adapt, and inspire.<br>
+        This is my PORTFOLIO.
+      </p>
+
+      <!-- typed output container -->
+      <p class="hero-intro" style="margin-top:6px;">
+        <span id="typedOutput" class="type-output" aria-hidden="false"></span>
+        <span id="typedCursor" class="type-cursor" aria-hidden="true">▍</span>
+      </p>
+
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. Built to make you stop, think, and feel.</p>
+
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank" rel="noopener">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+
+      <nav class="hero-nav" aria-label="Main navigation">
+        <ul style="display:flex; gap:12px; list-style:none; padding:0; margin:0; justify-content:center;">
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section id="Gallery">
+    <div class="gallery-title"><h1>Gallery</h1></div>
+    <div class="slider" aria-hidden="false">
+      <div class="slides">
+        <div class="slide"><img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo"></div>
+        <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
+        <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
+      </div>
+      <button class="prev" aria-label="Previous slide">&#10094;</button>
+      <button class="next" aria-label="Next slide">&#10095;</button>
+    </div>
+  </section>
+
+  <footer style="text-align:center; padding:28px 10px; color:#9fdfff;">
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 11th October 2025</p>
+  </footer>
+
+  <canvas id="ai-bg-canvas"></canvas>
+  <div class="ai-bg-overlay"></div>
+  <div class="ai-bg-retina"></div>
+
+  <!-- Typing + mechanical keystroke sound script (rewritten & robust) -->
+  <script>
+  (function(){
+    // CONFIG
+    const WPM = 160;
+    const AVG_CHARS_PER_WORD = 5;
+    const msPerChar = Math.max(8, Math.round(60000 / (WPM * AVG_CHARS_PER_WORD))); // small floor
+
+    // ELEMENTS
+    const originalPara = document.getElementById('heroIntro');
+    const output = document.getElementById('typedOutput');
+    const cursor = document.getElementById('typedCursor');
+
+    // Preserve original HTML but fix common entity issues so text shows as expected
+    // (keeps <strong> and <br> tokens intact)
+    const originalHTML = originalPara.innerHTML.replace(/&amp;/g, '&').trim();
+
+    // Tokenize: keep tags whole, text as single characters
+    function tokenizeHTML(html) {
+      const tokens = [];
+      let i = 0;
+      while (i < html.length) {
+        if (html[i] === '<') {
+          let j = i;
+          while (j < html.length && html[j] !== '>') j++;
+          tokens.push(html.slice(i, j + 1));
+          i = j + 1;
+        } else {
+          tokens.push(html[i]);
+          i++;
+        }
+      }
+      return tokens;
+    }
+    const tokens = tokenizeHTML(originalHTML);
+
+    // Keep original visible to assistive tech but hide visually
+    originalPara.style.opacity = '0';
+    originalPara.style.position = 'absolute';
+    originalPara.style.pointerEvents = 'none';
+    originalPara.style.height = '0';
+    originalPara.style.overflow = 'hidden';
+
+    // AUDIO: mechanical keystroke synthesis using Web Audio API
+    let audioCtx = null;
+    function initAudioContext() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      } catch (e) {
+        audioCtx = null;
+      }
+    }
+
+    function playClick() {
+      try {
+        if (!audioCtx) initAudioContext();
+        if (!audioCtx) return;
+        // only play if running (prevents suspended context errors)
+        if (audioCtx.state !== 'running') return;
+        const now = audioCtx.currentTime;
+        const bufferSize = Math.floor(0.018 * audioCtx.sampleRate); // ~18ms burst
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize) * 0.26;
+        }
+        const src = audioCtx.createBufferSource();
+        src.buffer = buffer;
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.8, now + 0.0035);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'highshelf';
+        filter.frequency.value = 3000;
+        filter.gain.value = 6;
+
+        src.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        src.start(now);
+        src.stop(now + 0.04);
+      } catch (e) {
+        // silently ignore audio errors (autoplay policies, etc.)
+      }
+    }
+
+    // small helper to decide whether to emit audio for token
+    function shouldPlayForChar(ch) {
+      if (!ch) return false;
+      if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') return false;
+      if (ch.startsWith('<')) return false;
+      return true;
+    }
+
+    // Typing control
+    let typingStarted = false;
+
+    async function typeTokens(tokList, charDelay) {
+      for (let i = 0; i < tokList.length; i++) {
+        const t = tokList[i];
+        if (t.startsWith('<')) {
+          // Append tags as-is (keeps markup like <strong> and <br>)
+          output.innerHTML += t;
+          // tiny pause for tags so markup settles visually
+          await new Promise(r => setTimeout(r, 1));
+        } else {
+          output.innerHTML += t;
+          if (shouldPlayForChar(t)) playClick();
+          await new Promise(r => setTimeout(r, charDelay));
+        }
+      }
+    }
+
+    function highlightPortfolioPhrase() {
+      const phrase = "This is my PORTFOLIO.";
+      const html = output.innerHTML;
+      const idx = html.indexOf(phrase);
+      if (idx >= 0) {
+        const before = html.slice(0, idx);
+        const after = html.slice(idx + phrase.length);
+        const wrapped = `<span class="msword-bold" id="portfolioPhrase">${phrase}</span>`;
+        output.innerHTML = before + wrapped + after;
+        const el = document.getElementById('portfolioPhrase');
+        requestAnimationFrame(() => el.classList.add('pop'));
+      }
+    }
+
+    // Starts the typing sequence only once
+    async function startTypingSequenceOnce() {
+      if (typingStarted) return;
+      typingStarted = true;
+      cursor.style.visibility = 'visible';
+      await typeTokens(tokens, msPerChar);
+      // small flourish after typing completes
+      setTimeout(() => {
+        highlightPortfolioPhrase();
+        setTimeout(() => { cursor.style.display = 'none'; }, 420);
+      }, 140);
+    }
+
+    // Resume audio (on user gesture) and ensure typing runs
+    async function resumeAudioAndStart() {
+      try {
+        initAudioContext();
+        if (audioCtx && audioCtx.state === 'suspended' && typeof audioCtx.resume === 'function') {
+          await audioCtx.resume().catch(()=>{/* ignore */});
+        }
+      } catch (e) {
+        // ignore
+      }
+      // If typing not finished, start/continue typing
+      startTypingSequenceOnce();
+      // remove listeners after first gesture
+      window.removeEventListener('pointerdown', resumeAudioAndStart);
+      window.removeEventListener('keydown', resumeAudioAndStart);
+      window.removeEventListener('touchstart', resumeAudioAndStart);
+    }
+
+    // Attempt to start typing visually (so page shows text even without a gesture).
+    // Audio will only play when audioCtx is running; clicking/tapping resumes audio and guarantees typing triggers.
+    function tryStart() {
+      // Start visual typing immediately (if allowed). If autoplay blocks audio, resumeAudioAndStart will resume audio on gesture.
+      startTypingSequenceOnce();
+
+      // Ensure audio can be resumed on first gesture and that typing is triggered if user interacts early.
+      window.addEventListener('pointerdown', resumeAudioAndStart, { once: true });
+      window.addEventListener('keydown', resumeAudioAndStart, { once: true });
+      window.addEventListener('touchstart', resumeAudioAndStart, { once: true });
+    }
+
+    // Kick off when DOM is ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(tryStart, 120);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(tryStart, 120));
+    }
+
+  })();
+  </script>
+
+  <!-- Your original scripts — left untouched as requested -->
+  <script src="slider.js"></script>
+  <script src="hanoi.js"></script>
+  <script src="header-typing.js"></script>
+  <script src="nav-active.js"></script>
+  <script src="ai-bg.js" defer></script>
+  <script src="sticky_header.js"></script>
+  <script src="home-nav-sticky.js"></script>
+</body>
+</html>

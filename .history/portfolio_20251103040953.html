@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- base layout (kept and slightly cleaned from your original) --- */
+    :root{
+      --bg:#000;
+      --glass: rgba(10,10,25,0.25);
+      --accent-1: #0015ff;
+      --accent-2: #00aaff;
+      --light: #d9faff;
+    }
+
+    html,body{height:100%;margin:0;padding:0;background:var(--bg);font-family:Inter, system-ui, Arial, sans-serif;color:#bdeaff}
+    .site-header{position:fixed;top:0;left:0;width:100%;background:var(--glass);backdrop-filter:blur(8px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06);z-index:9999;padding:14px 22px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between}
+    .brand-name{font-weight:700;color:var(--light);font-family:Orbitron, sans-serif}
+    .brand-accent-line{display:inline-block;width:90px;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));box-shadow:0 0 25px #0077ff,0 0 70px #004cff,0 0 120px #00eaff;margin-left:12px;vertical-align:middle}
+
+    /* hero */
+    .hero{padding-top:90px;padding-bottom:30px;text-align:center;position:relative;z-index:2}
+    .hero-inner{max-width:980px;margin:0 auto;padding:8px}
+    .hero-title{font-family:Orbitron, sans-serif;font-size:3rem;font-weight:800;color:var(--light);text-shadow:0 0 25px #009dff,0 0 60px #0077ff,0 0 120px #00eaff;margin:8px 0}
+    .hero-sub{font-family:Poppins, sans-serif;font-size:1.2rem;color:#33ccff;margin-bottom:18px}
+
+    /* the intro paragraph box */
+    .hero-intro{
+      font-family:Poppins, sans-serif;
+      font-size:1.05rem;
+      line-height:1.6;
+      color:#bdeaff;
+      max-width:900px;margin:0 auto 18px;
+      text-shadow:0 0 10px rgba(0,150,255,0.14);
+    }
+
+    /* Typewriter specific styling */
+    .typewrap { display:inline-block; white-space:pre-wrap; word-break:break-word; font-weight:400; }
+    .typewrap strong { font-weight:700; } /* for "Koustav Das" */
+    .typed { display:inline; }
+    .cursor {
+      display:inline-block;
+      width:1ch;
+      margin-left:4px;
+      vertical-align:bottom;
+      background:transparent;
+      color:transparent;
+      /* styled as block caret */
+      border-left:2px solid #bdeaff;
+      height:1.15em;
+      animation: blink 900ms steps(1) infinite;
+    }
+
+    @keyframes blink {
+      0% { border-left-color:transparent; }
+      50% { border-left-color:#bdeaff; }
+      100% { border-left-color:transparent; }
+    }
+
+    /* Bold / enlarge effect for the "PORTFOLIO" word once typed */
+    .portfolio-highlight {
+      display:inline-block;
+      transform-origin:center;
+      transition: transform 260ms ease, color 260ms ease, text-shadow 260ms ease;
+    }
+    .portfolio-highlight.grow {
+      transform: scale(1.22);
+      color:#fff;
+      text-shadow:0 0 28px #00eaff, 0 0 60px #0077ff;
+      font-weight:800;
+    }
+
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; border-left-color: #bdeaff; }
+    }
+
+    /* small: slider and gallery kept simple (copied from your original) */
+    #Gallery { text-align:center;padding:60px 0;color:#aeefff; }
+    .slider{position:relative;width:90%;max-width:1000px;margin:0 auto;overflow:hidden;border-radius:12px}
+    .slides{display:flex;transition:transform .5s ease-in-out}
+    .slide{flex:0 0 100%;display:flex;align-items:center;justify-content:center;background:#03060a;padding:12px}
+    .slide img{max-width:100%;max-height:500px;object-fit:contain;border-radius:10px}
+    footer{color:#98e7ff;text-align:center;padding:24px 12px}
+    /* nice small responsive tweak */
+    @media (max-width:640px){
+      .hero-title{font-size:2rem}
+      .hero-intro{font-size:0.96rem}
+    }
+
+  </style>
+</head>
+<body class="home-page">
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-name">Koustav Das</span>
+      <span class="brand-accent-line"></span>
+    </div>
+    <div class="role">
+      <!-- left intentionally minimal -->
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- IMPORTANT: static greeting stays; the typed part will mimic MS Word typing + mechanical sounds -->
+      <p class="hero-intro" aria-live="polite">
+        <span>Hi, I’m <strong>Koustav Das</strong> — </span>
+        <span class="typewrap" id="typewrap" aria-hidden="false">
+          <!-- typed text will be injected here -->
+          <span class="typed" id="typed"></span>
+          <span class="cursor" id="cursor" aria-hidden="true"></span>
+        </span>
+      </p>
+
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. Built to make you stop, think, and feel.</p>
+
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank" rel="noopener">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+
+      <nav class="hero-nav" aria-label="Primary">
+        <ul style="list-style:none;padding:0;margin:20px 0 0;display:flex;gap:18px;justify-content:center">
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section id="Gallery">
+    <div class="gallery-title"><h1>Gallery</h1></div>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide"><img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo"></div>
+        <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
+        <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 11th October 2025</p>
+  </footer>
+
+  <!-- Inline JS: typewriter + audio (generated via Web Audio API) -->
+  <script>
+  (function(){
+    // TEXT TO TYPE (customize if needed)
+    // We'll type everything after "Hi, I’m Koustav Das — "
+    const fullText = "an AI & Machine Learning visionary crafting systems that think, adapt, and inspire.\nThis is my PORTFOLIO.";
+
+    // Config: 60 WPM -> 60 words/min. Conventional WPM uses 5 chars per 'word'.
+    // chars_per_minute = 60 * 5 = 300 => interval = 60000 / 300 = 200 ms per char
+    const intervalMs = 200; // per character -> ~60 WPM
+    const pauseBetweenLines = 250; // small pause when encountering newline
+    const boldWord = "PORTFOLIO"; // the word to "MS-Word bold" at the end
+    const typedEl = document.getElementById('typed');
+    const cursorEl = document.getElementById('cursor');
+
+    // Accessibility: respect user preference for reduced motion -> disable animation and sound
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // WebAudio synth for key click
+    let audioCtx, masterGain;
+    function initAudio() {
+      if (!window.AudioContext && !window.webkitAudioContext) return null;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.15; // base volume
+      masterGain.connect(audioCtx.destination);
+      return audioCtx;
+    }
+
+    // Play a short mechanical click: quick noise burst + tonal body
+    function playClick() {
+      if (reduceMotion) return;
+      if (!audioCtx) initAudio();
+      if (!audioCtx) return;
+
+      // small per-key variation so it doesn't sound robotic
+      const now = audioCtx.currentTime;
+      // noise burst
+      const bufferSize = 0.01 * audioCtx.sampleRate; // very short noise
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = noiseBuffer.getChannelData(0);
+      for (let i=0;i<data.length;i++){
+        data[i] = (Math.random()*2-1) * (1 - i/data.length); // fade
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = noiseBuffer;
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.9, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+      noise.connect(noiseGain).connect(masterGain);
+      noise.start(now);
+      noise.stop(now + 0.04);
+
+      // tonal body for click
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'square';
+      osc.frequency.value = 100 + Math.random()*200; // small variation
+      oscGain.gain.setValueAtTime(0.0008, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.12, now + 0.002);
+      oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+      osc.connect(oscGain).connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.06);
+    }
+
+    // Helper: insert a node-safe text (handles newline -> <br>)
+    function appendCharSafe(container, ch) {
+      if (ch === '\n') {
+        container.appendChild(document.createElement('br'));
+      } else {
+        // if adding part of bold word we may wrap later
+        container.appendChild(document.createTextNode(ch));
+      }
+    }
+
+    // Main typing routine
+    function typeText(text, el, onDone) {
+      let i = 0;
+      // We'll progressively create the content in a DocumentFragment then append
+      // But for simplicity we will type directly into the element.
+      function step() {
+        if (i >= text.length) {
+          onDone && onDone();
+          return;
+        }
+        const ch = text[i];
+        // If it's the start of the bold word, we need to check ahead
+        // We'll handle bolding by replacing the last occurrence after finishing,
+        // but to create the "make bold and enlarge" effect, we'll wrap the word in a span at the end.
+        appendCharSafe(el, ch);
+        // play key sound for visible characters (also for spaces? we will play for letters and punctuation but not for spaces/newlines)
+        if (ch !== ' ' && ch !== '\n') {
+          try { playClick(); } catch(e){/* ignore audio errors */ }
+        }
+        i++;
+        // small pause if newline
+        if (ch === '\n') {
+          setTimeout(step, pauseBetweenLines);
+        } else {
+          setTimeout(step, intervalMs);
+        }
+      }
+      step();
+    }
+
+    // A safer way to post-process: after typing finishes, locate the last occurrence of boldWord and wrap it.
+    function highlightPortfolio() {
+      // find plain text occurrence of boldWord inside typedEl (which may include <br>)
+      // We'll get textContent, find index, then rebuild innerHTML with span wrapper.
+      const raw = typedEl.textContent || '';
+      const idx = raw.lastIndexOf(boldWord);
+      if (idx === -1) return; // not found
+      // Build new HTML: split textContent at idx and wrap boldWord
+      const before = raw.slice(0, idx);
+      const word = raw.slice(idx, idx + boldWord.length);
+      const after = raw.slice(idx + boldWord.length);
+      // convert newline to <br> for the final HTML
+      function nlToBr(s){ return s.replace(/\n/g, '<br>'); }
+      typedEl.innerHTML = nlToBr(before) + '<span class="portfolio-highlight" id="portfolioWord">' + word + '</span>' + nlToBr(after);
+      // Animate the "MS-Word bold" tweak: enlarge briefly then settle
+      const port = document.getElementById('portfolioWord');
+      if (!port) return;
+      // force reflow then add class
+      void port.offsetWidth;
+      port.classList.add('grow');
+      // after a short delay, keep it bold but remove transform (we'll keep bold style)
+      setTimeout(() => {
+        // keep it bold but remove scaling class to settle (we can leave it bold permanently)
+        port.classList.remove('grow');
+        port.style.fontWeight = '800';
+        port.style.color = '#ffffff';
+        port.style.textShadow = '0 0 20px #00eaff, 0 0 60px #0077ff';
+        port.style.transition = 'transform 260ms ease, color 260ms ease, text-shadow 260ms ease';
+      }, 600);
+    }
+
+    // Kick off typing on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function(){
+      const typedContainer = typedEl;
+      // Ensure typed container is empty
+      typedContainer.innerHTML = '';
+
+      // On some browsers, audio context must be resumed by user gesture. We'll prepare audio, but only resume when user interacts (click anywhere)
+      if (!reduceMotion) {
+        initAudio();
+        function resumeAudio() {
+          if (!audioCtx) return;
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume().catch(()=>{/* ignore */});
+          }
+          // once resumed, remove listener
+          window.removeEventListener('click', resumeAudio);
+          window.removeEventListener('keydown', resumeAudio);
+        }
+        window.addEventListener('click', resumeAudio);
+        window.addEventListener('keydown', resumeAudio);
+      }
+
+      // Start typing after a short initial delay (like MS Word when you start typing)
+      setTimeout(() => {
+        typeText(fullText, typedContainer, function done(){
+          // When typing completes, convert last word to highlighted/bold and stop cursor blinking
+          highlightPortfolio();
+          // Stop cursor blinking: make it a static thin caret removed
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // make cursor invisible gracefully
+            cursorEl.style.borderLeftColor = 'transparent';
+            cursorEl.style.animation = 'none';
+            // optionally hide the cursor after a small pause
+            setTimeout(()=>{ cursorEl.style.display = 'none'; }, 400);
+          } else {
+            // reduced motion - keep simple caret visible
+          }
+        });
+      }, 450); // initial tiny delay to feel natural
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ai-bg.css" />
+  <link rel="stylesheet" href="sticky_header.css" />
+
+  <style>
+    /* --- HERO CENTERING FIX --- */
+    .hero-intro {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      color: #bdeaff;
+      text-shadow: 0 0 10px rgba(0,150,255,0.4);
+      text-align: center;
+      margin: 18px auto 30px;
+      line-height: 1.7;
+      max-width: 700px;
+      white-space: normal;
+      display: block;
+      word-wrap: break-word;
+    }
+
+    .hero-intro-wrapper {
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .type-output {
+      display: block;
+      text-align: center;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .type-cursor {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 6px;
+      animation: blink 1s steps(2, start) infinite;
+      font-weight: 700;
+      color: #bdeaff;
+      transform: translateY(-2px);
+      visibility: hidden;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+    }
+
+    .site-header::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('portifolio_home_pictures/header_BG.png') top center no-repeat;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10,10,25,0.25);
+      backdrop-filter: blur(8px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 99999;
+    }
+
+    .site-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(10,10,25,0.4) 0%, rgba(10,10,25,0.3) 100%);
+      z-index: -1;
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .brand-accent-line {
+      display: block;
+      width: 90px;
+      height: 3px;
+      margin: 6px auto 0;
+      background: linear-gradient(90deg, #0015ff, #00aaff);
+      border-radius: 10px;
+      box-shadow: 0 0 25px #0077ff, 0 0 70px #004cff, 0 0 120px #00eaff;
+      animation: zapLine 0.4s infinite;
+    }
+
+    @keyframes zapLine {
+      0%, 20%, 50%, 100% { opacity: 1; filter: brightness(1.5); }
+      10%, 60%, 80% { opacity: 0.3; filter: brightness(3); }
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #d9faff;
+      text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+      position: relative;
+      animation: shockFlicker 3s infinite steps(1, end);
+      margin-bottom: 10px !important;
+    }
+
+    @keyframes shockFlicker {
+      0%, 85%, 100% {
+        text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+        transform: none;
+      }
+      88%, 90%, 92% {
+        text-shadow: 0 0 50px #00ffff, 0 0 150px #00eaff, 0 0 250px #00ffff;
+        transform: translateX(1px) skewX(0.5deg);
+      }
+    }
+
+    .hero-sub {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      color: #33ccff;
+      text-shadow: 0 0 25px #00baff, 0 0 60px #00e0ff, 0 0 120px #33ccff;
+      animation: electricHum 3.5s infinite ease-in-out;
+      margin-bottom: 20px !important;
+    }
+
+    @keyframes electricHum {
+      0%, 100% { opacity: 1; filter: brightness(1); }
+      50% { opacity: 0.85; filter: brightness(1.3); }
+    }
+
+    .hero-cta { margin-bottom: 15px !important; }
+
+    .hero-nav { 
+      margin-top: 5px !important;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 998;
+      transition: all 0.3s ease;
+      padding: 12px 0;
+    }
+
+    .msword-bold {
+      display: inline-block;
+      font-weight: 700;
+      transform-origin: center center;
+      transition: transform 260ms ease, text-shadow 260ms ease;
+      text-shadow: 0 0 12px rgba(255,255,255,0.15);
+    }
+
+    .msword-bold.pop {
+      transform: scale(1.22);
+      text-shadow: 0 0 24px rgba(0,200,255,0.45);
+      color: #ffffff;
+    }
+
+    .msword-bold.electrify-out {
+      animation: electrifyDisappear 0.8s ease-out forwards;
+    }
+
+    @keyframes electrifyDisappear {
+      0% {
+        transform: scale(1.22);
+        opacity: 1;
+        filter: brightness(1);
+      }
+      20% {
+        transform: scale(1.3);
+        opacity: 1;
+        filter: brightness(2) blur(0px);
+        text-shadow: 0 0 40px #00ffff, 0 0 80px #00eaff, 0 0 120px #0077ff;
+      }
+      40% {
+        transform: scale(1.4);
+        opacity: 0.8;
+        filter: brightness(3) blur(2px);
+        text-shadow: 0 0 60px #00ffff, 0 0 120px #00eaff, 0 0 180px #0077ff;
+      }
+      60% {
+        transform: scale(1.5);
+        opacity: 0.4;
+        filter: brightness(4) blur(4px);
+        text-shadow: 0 0 80px #00ffff, 0 0 160px #00eaff, 0 0 240px #0077ff;
+      }
+      80% {
+        transform: scale(1.6);
+        opacity: 0.1;
+        filter: brightness(5) blur(8px);
+        text-shadow: 0 0 100px #00ffff, 0 0 200px #00eaff, 0 0 300px #0077ff;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+        filter: brightness(6) blur(15px);
+        text-shadow: 0 0 150px #00ffff, 0 0 300px #00eaff, 0 0 450px #0077ff;
+      }
+    }
+
+    /* PROPER MARQUEE CONTAINER */
+    #marqueeContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      transform: translateY(-50%);
+      z-index: 100000;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    #marqueeContainer.active {
+      display: block;
+    }
+
+    #marqueeText {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 24px rgba(0,200,255,0.45);
+      white-space: nowrap;
+      animation: marqueeScrollContinuous 15s linear infinite;
+    }
+
+    @keyframes marqueeScrollContinuous {
+      0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="home-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent-line"></span>
+      </div>
+      <div class="role">
+        <span id="role-text"></span>
+        <span class="role-cursor" id="role-cursor">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-intro-wrapper">
+        <p class="hero-intro" id="heroIntro" aria-live="polite" aria-atomic="true">
+          Hi, I'm <strong>Koustav Das</strong> — an AI and Machine Learning visionary, crafting systems that think, adapt, and inspire.<br>
+          This is my PORTFOLIO.
+        </p>
+
+        <p class="hero-intro" style="margin-top: 6px;">
+          <span id="typedOutput" class="type-output" aria-hidden="false"></span>
+          <span id="typedCursor" class="type-cursor" aria-hidden="true">▍</span>
+        </p>
+      </div>
+
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. Built to make you stop, think, and feel.</p>
+
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+
+      <nav class="hero-nav">
+        <ul>
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section id="Gallery">
+    <div class="gallery-title"><h1>Gallery</h1></div>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide"><img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo"></div>
+        <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
+        <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 11th October 2025</p>
+  </footer>
+
+  <!-- DEDICATED MARQUEE CONTAINER -->
+  <div id="marqueeContainer">
+    <div id="marqueeText"></div>
+  </div>
+
+  <canvas id="ai-bg-canvas"></canvas>
+  <div class="ai-bg-overlay"></div>
+  <div class="ai-bg-retina"></div>
+
+  <script>
+    (function(){
+      const WPM = 160;
+      const AVG_CHARS_PER_WORD = 5;
+      const msPerChar = Math.max(20, Math.round(60000 / (WPM * AVG_CHARS_PER_WORD)));
+
+      const originalPara = document.getElementById('heroIntro');
+      const output = document.getElementById('typedOutput');
+      const cursor = document.getElementById('typedCursor');
+      const marqueeContainer = document.getElementById('marqueeContainer');
+      const marqueeText = document.getElementById('marqueeText');
+
+      const originalHTML = originalPara.innerHTML.trim();
+      const plainText = originalPara.textContent.replace(/\u00A0/g, ' ').trim();
+
+      originalPara.style.opacity = '0';
+      originalPara.style.position = 'absolute';
+      originalPara.style.pointerEvents = 'none';
+      originalPara.style.height = '0';
+      originalPara.style.overflow = 'hidden';
+      originalPara.setAttribute('aria-hidden', 'true');
+
+      let audioCtx = null;
+      function playClick() {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state !== 'running') return;
+          const now = audioCtx.currentTime;
+          const bufferSize = Math.floor(0.018 * audioCtx.sampleRate);
+          const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize) * 0.26;
+          }
+          const src = audioCtx.createBufferSource();
+          src.buffer = buffer;
+          const gain = audioCtx.createGain();
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(0.8, now + 0.0035);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'highshelf';
+          filter.frequency.value = 3000;
+          filter.gain.value = 6;
+
+          src.connect(filter);
+          filter.connect(gain);
+          gain.connect(audioCtx.destination);
+          src.start(now);
+          src.stop(now + 0.04);
+        } catch (e) {}
+      }
+
+      function shouldPlayForChar(ch) {
+        return ch && ch.trim() !== '';
+      }
+
+      let typingStarted = false;
+
+      async function typePlainText(text, delay) {
+        output.textContent = '';
+        cursor.style.visibility = 'visible';
+        for (let i = 0; i < text.length; i++) {
+          const ch = text[i];
+          output.textContent += ch;
+          if (shouldPlayForChar(ch)) { try { playClick(); } catch (e) {} }
+          const variance = Math.round(delay * 0.18);
+          const nextDelay = delay + (Math.random() * variance * 2 - variance);
+          await new Promise(r => setTimeout(r, Math.max(10, Math.round(nextDelay))));
+        }
+      }
+
+      function startMarquee() {
+        const phrase = "This is my PORTFOLIO.";
+        
+        // Set the text in marquee
+        marqueeText.textContent = phrase;
+        
+        // Reset animation by removing and re-adding
+        marqueeText.style.animation = 'none';
+        void marqueeText.offsetWidth; // Force reflow
+        marqueeText.style.animation = 'marqueeScrollContinuous 15s linear infinite';
+        
+        // Show marquee container
+        marqueeContainer.classList.add('active');
+        
+        // Keep it running continuously - no timeout to hide
+      }
+
+      function restoreHTMLAndHighlight() {
+        const phrase = "This is my PORTFOLIO.";
+        const parent = output.parentElement;
+        cursor.style.visibility = 'hidden';
+        parent.querySelector('#typedOutput').innerHTML = originalHTML.replace(/\n/g, '<br>');
+        const typedHtml = parent.querySelector('#typedOutput').innerHTML;
+        const idx = typedHtml.indexOf(phrase);
+        if (idx >= 0) {
+          const before = typedHtml.slice(0, idx);
+          const after = typedHtml.slice(idx + phrase.length);
+          const wrapped = `<span class="msword-bold" id="portfolioPhrase">${phrase}</span>`;
+          parent.querySelector('#typedOutput').innerHTML = before + wrapped + after;
+          const el = document.getElementById('portfolioPhrase');
+          requestAnimationFrame(() => { 
+            el.classList.add('pop');
+            // Wait for pop animation, then electrify out and start marquee simultaneously
+            setTimeout(() => {
+              el.classList.add('electrify-out');
+              startMarquee();
+            }, 500);
+          });
+        }
+        cursor.style.display = 'none';
+      }
+
+      async function startTypingOnce() {
+        if (typingStarted) return;
+        typingStarted = true;
+        try { await typePlainText(plainText, msPerChar); }
+        finally { setTimeout(restoreHTMLAndHighlight, 80); }
+      }
+
+      function resumeAudioAndStart() {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx && audioCtx.state === 'suspended' && typeof audioCtx.resume === 'function') {
+            audioCtx.resume().catch(()=>{});
+          }
+        } catch (e) {}
+        startTypingOnce();
+        window.removeEventListener('pointerdown', resumeAudioAndStart);
+        window.removeEventListener('keydown', resumeAudioAndStart);
+        window.removeEventListener('touchstart', resumeAudioAndStart);
+      }
+
+      function tryStart() {
+        startTypingOnce();
+        window.addEventListener('pointerdown', resumeAudioAndStart, { once: true });
+        window.addEventListener('keydown', resumeAudioAndStart, { once: true });
+        window.addEventListener('touchstart', resumeAudioAndStart, { once: true });
+      }
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(tryStart, 120);
+      } else {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(tryStart, 120));
+      }
+
+    })();
+  </script>
+
+  <script src="slider.js"></script>
+  <script src="hanoi.js"></script>
+  <script src="header-typing.js"></script>
+  <script src="nav-active.js"></script>
+  <script src="ai-bg.js" defer></script>
+  <script src="sticky_header.js"></script>
+  <script src="home-nav-sticky.js"></script>
+</body>
+</html>

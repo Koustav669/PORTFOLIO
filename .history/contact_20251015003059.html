@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Koustav</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner header-brand">
+      <div class="brand-left">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent" aria-hidden="true"></span>
+      </div>
+    </div>
+    <nav class="hero-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="portfolio.html">Home</a></li>
+        <li><a href="PROJECTS.html">Projects</a></li>
+        <li><a href="SKILLS.html">Skills</a></li>
+        <li><a href="DEEPDIVES.html">DeepDive</a></li>
+        <li><a href="EDUCATION.html">Education</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contact-page" style="padding:48px 20px; max-width:900px; margin:0 auto;">
+    <h1 class="contact-title">Get in touch</h1>
+    <div class="contact-info" style="margin-bottom:18px; color:#dfeffb;">
+      <p><strong>Email:</strong> <a href="mailto:daskoustav88@gamil.com">daskoustav88@gamil.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+918100398413">+91 81003 98413</a></p>
+    </div>
+
+    <form id="contact-form" class="contact-form" aria-label="Contact form">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">Your Email</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit" class="btn primary">Send</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+  </footer>
+
+  <script>
+  // contact form handler - opens user's mail client with prefilled content
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const subject = encodeURIComponent('Website contact from ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+    const mailto = 'mailto:daskoustav88@gamil.com?subject=' + subject + '&body=' + body;
+    window.location.href = mailto;
+  });
+  </script>
+  <script src="nav-active.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+Manual backup of current workspace before restoring redesign state on 2025-10-13.
+Files saved elsewhere: portfolio.html (current), style.css (current)

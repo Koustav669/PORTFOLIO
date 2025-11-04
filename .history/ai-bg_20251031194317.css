@@ -1,0 +1,72 @@
+/* ai-bg.css
+   Full-screen ultra-realistic mesh background styles.
+   Keeps canvas behind page content and non-interactive.
+   Exposes a few CSS variables for quick tuning.
+*/
+
+
+:root{
+  /* background base index (kept behind content) */
+  --ai-bg-z-index: 0;
+  --ai-bg-base-color: #05060a; /* overall page base */
+  --ai-bg-overlay-alpha: 0.12; /* overlay darkness */
+}
+
+#ai-bg-canvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  z-index:0; /* keep at bottom of stacking context */
+  pointer-events:none; /* never capture mouse/touch */
+  display:block;
+  will-change: transform; /* hint for performance */
+  /* reduce any potential bleed by using lower composite operations in JS */
+}
+
+/* Ensure body background remains dark without altering layout */
+html, body {
+  height: auto;
+  overflow: auto !important; /* restore scrolling if any script/style accidentally disabled it */
+}
+
+body{
+  position:relative;
+  background: var(--ai-bg-base-color);
+}
+
+/* Subtle overlay to enhance contrast on top of canvas */
+.ai-bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:0; /* overlay sits with canvas but content will be above */
+  pointer-events:none;
+  /* glass-like overlay to keep text readable: translucent + blur */
+  background: rgba(6,10,16,0.04);
+  backdrop-filter: blur(6px) saturate(110%);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  mix-blend-mode: normal;
+  border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Liquid-retina sheen layer (subtle, non-blocking) */
+.ai-bg-retina {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.006) 12%, rgba(0,0,0,0) 25%);
+  mix-blend-mode: overlay;
+  filter: blur(6px) contrast(1.02) saturate(1.05);
+}
+
+/* Ensure page content is above the background visuals so scrolling and interaction are not blocked */
+body > *:not(#ai-bg-canvas):not(.ai-bg-overlay) {
+  position: relative;
+  z-index: 1;
+}
+
+/* make sure headings and key text are highly legible above the effect */
+.hero-title, .hero-sub, .brand-name, #role-text {
+  text-shadow: 0 8px 28px rgba(0,8,18,0.55);
+}

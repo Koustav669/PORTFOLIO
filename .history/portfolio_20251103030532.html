@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero {
+      text-align: center;
+      position: relative;
+    }
+
+    /* ⚡ Main Title */
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow:
+        0 0 15px #00bfff,
+        0 0 30px #00bfff,
+        0 0 60px #0099ff;
+      animation: shock 2.5s infinite;
+    }
+
+    /* ⚡ Subtitle - "Not just code..." */
+    .tagline {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #00bfff;
+      font-family: 'Poppins', sans-serif;
+      text-shadow:
+        0 0 20px #00bfff,
+        0 0 40px #00aaff,
+        0 0 80px #0099ff;
+      animation: mildShock 4s infinite ease-in-out;
+    }
+
+    /* ⚡ Subtext under Manifesto */
+    .hero-sub {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      color: #33ccff; /* Brighter vibrant blue */
+      text-shadow:
+        0 0 25px #009dff,
+        0 0 60px #00c8ff,
+        0 0 100px #33ccff;
+      animation: electricHum 3.5s infinite ease-in-out;
+    }
+
+    @keyframes shock {
+      0%, 90%, 100% {
+        text-shadow:
+          0 0 20px #00bfff,
+          0 0 40px #00bfff,
+          0 0 80px #0099ff;
+      }
+      92%, 96% {
+        text-shadow:
+          0 0 50px #00eaff,
+          0 0 100px #00ffff,
+          0 0 200px #00ffff;
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes mildShock {
+      0%, 90%, 100% {
+        text-shadow:
+          0 0 20px #00bfff,
+          0 0 50px #0099ff;
+      }
+      94% {
+        text-shadow:
+          0 0 60px #00ffff,
+          0 0 100px #00eaff;
+      }
+    }
+
+    @keyframes electricHum {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.9;
+        text-shadow:
+          0 0 30px #00c8ff,
+          0 0 80px #33ccff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Manifesto</h1>
+    <p class="tagline">Not just code. A declaration of obsession.</p>
+    <p class="hero-sub">Minimal. Relentless. Visual. Human.</p>
+  </div>
+</body>
+</html>

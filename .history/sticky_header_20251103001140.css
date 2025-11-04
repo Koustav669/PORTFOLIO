@@ -1,0 +1,24 @@
+/* Sticky header main style */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 99999; /* super high to stay on top */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* scroll hone ke baad thoda subtle change */
+.site-header.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* header ke niche content hide na ho */
+body {
+  padding-top: 120px; /* adjust if header height changes */
+}

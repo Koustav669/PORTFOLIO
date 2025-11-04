@@ -1,0 +1,7 @@
+Snapshot created: 2025-10-14
+Includes:
+- portfolio.html
+- style.css
+- slider.js
+
+Note: Image files and other assets (portifolio_home_pictures/) are not copied; they remain in place. To fully restore the site, copy these files back to the workspace root (overwriting existing files) and the site will match the snapshot.

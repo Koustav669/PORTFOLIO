@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav | Visual Systems Architect</title>
+  
+  <!-- Force audio autoplay policies -->
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Chrome/Edge autoplay policy -->
+  <meta http-equiv="origin-trial" content="force-audio">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ai-bg.css" />
+  <link rel="stylesheet" href="sticky_header.css" />
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+    }
+
+    .site-header::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('portifolio_home_pictures/header_BG.png') top center no-repeat;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10,10,25,0.25);
+      backdrop-filter: blur(8px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 99999;
+    }
+
+    .site-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(10,10,25,0.4) 0%, rgba(10,10,25,0.3) 100%);
+      z-index: -1;
+    }
+
+    /* HERO centered vertically and horizontally (keeps layout stable) */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px); /* accommodates header height roughly */
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .brand-accent-line {
+      display: block;
+      width: 90px;
+      height: 3px;
+      margin: 6px auto 0;
+      background: linear-gradient(90deg, #0015ff, #00aaff);
+      border-radius: 10px;
+      box-shadow: 0 0 25px #0077ff, 0 0 70px #004cff, 0 0 120px #00eaff;
+      animation: zapLine 0.4s infinite;
+    }
+
+    @keyframes zapLine {
+      0%, 20%, 50%, 100% { opacity: 1; filter: brightness(1.5); }
+      10%, 60%, 80% { opacity: 0.3; filter: brightness(3); }
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #d9faff;
+      text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+      position: relative;
+      animation: shockFlicker 3s infinite steps(1, end);
+      margin-bottom: 10px !important;
+    }
+
+    @keyframes shockFlicker {
+      0%, 85%, 100% {
+        text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+        transform: none;
+      }
+      88%, 90%, 92% {
+        text-shadow: 0 0 50px #00ffff, 0 0 150px #00eaff, 0 0 250px #00ffff;
+        transform: translateX(1px) skewX(0.5deg);
+      }
+    }
+
+    .hero-intro {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      max-width: 100%;
+      width: 100%;
+      margin: 18px auto 30px;
+      line-height: 1.7;
+      color: #bdeaff;
+      text-shadow: 0 0 10px rgba(0,150,255,0.4);
+      animation: fadeInIntro 0.9s ease-in-out;
+      text-align: center;
+      display: block;
+      white-space: pre-wrap;
+      /* hide original visible copy (kept for a11y) */
+    }
+
+    @keyframes fadeInIntro {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-sub {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      color: #33ccff;
+      text-shadow: 0 0 25px #00baff, 0 0 60px #00e0ff, 0 0 120px #33ccff;
+      animation: electricHum 3.5s infinite ease-in-out;
+      margin-bottom: 20px !important;
+    }
+
+    @keyframes electricHum {
+      0%, 100% { opacity: 1; filter: brightness(1); }
+      50% { opacity: 0.85; filter: brightness(1.3); }
+    }
+
+    .hero-cta { margin-bottom: 15px !important; }
+    
+    .hero-nav { 
+      margin-top: 5px !important;
+      width: 100%;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 998;
+      transition: all 0.3s ease;
+      padding: 12px 0;
+    }
+
+    .hero-nav-placeholder {
+      height: 0;
+      width: 100%;
+    }
+
+    /* Typing specific styles */
+    .type-output { display: inline; }
+    .type-cursor {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 6px;
+      animation: blink 1s steps(2, start) infinite;
+      font-weight: 700;
+      color: #bdeaff;
+      transform: translateY(-2px);
+    }
+    @keyframes blink {
+      0% { opacity: 1 }
+      50% { opacity: 0 }
+      100% { opacity: 1 }
+    }
+
+    /* MS-Word-like bold/scale highlight after typing */
+    .msword-bold {
+      display: inline-block;
+      font-weight: 700;
+      transform-origin: left center;
+      transition: transform 260ms ease, text-shadow 260ms ease;
+      text-shadow: 0 0 12px rgba(255,255,255,0.15);
+    }
+    .msword-bold.pop {
+      transform: scale(1.22);
+      text-shadow: 0 0 24px rgba(0,200,255,0.45);
+      color: #ffffff;
+    }
+
+    /* slider and gallery styles unchanged... (kept from original) */
+    #Gallery {
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      align-items: center;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #03060a;
+      padding: 12px;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-size: 2rem;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .gallery-title h1 {
+      font-size: 2.5rem;
+      color: #aeefff;
+      text-shadow: 0 0 15px #007bff, 0 0 30px #004cff;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body class="home-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-name">Koustav Das</span>
+        <span class="brand-accent-line"></span>
+      </div>
+      <div class="role">
+        <span id="role-text"></span>
+        <span class="role-cursor" id="role-cursor">▍</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <!--
+        IMPORTANT: The original paragraph content is preserved exactly.
+        We'll hide the original visually and build a typed version
+        using a small live element next to it so nothing else breaks.
+      -->
+      <p class="hero-intro" id="heroIntro" aria-live="polite" aria-atomic="true">
+        Hi, I'm <strong>Koustav Das</strong> — an AI and Machine Learning Visionary, crafting systems that Think, Adapt, and Inspire.<br>
+        This is my PORTFOLIO.
+      </p>
+
+      <!-- typed output container (starts empty) -->
+      <p class="hero-intro" style="margin-top: 6px;">
+        <span id="typedOutput" class="type-output" aria-hidden="false"></span>
+        <span id="typedCursor" class="type-cursor" aria-hidden="true">▍</span>
+      </p>
+
+      <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
+      <p class="hero-sub">Minimal. Relentless. Visual. Built to make you stop, think, and feel.</p>
+
+      <div class="hero-cta">
+        <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank">View GitHub</a>
+        <a class="btn resume" href="#">Resume</a>
+      </div>
+
+      <nav class="hero-nav">
+        <ul>
+          <li><a href="portfolio.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="deepdive.html">DeepDive</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section id="Gallery">
+    <div class="gallery-title"><h1>Gallery</h1></div>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide"><img src="portifolio_home_pictures/ME.jpg" alt="Portfolio Profile Photo"></div>
+        <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
+        <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Koustav. Built with precision and pride.</p>
+    <p>Last updated 11th October 2025</p>
+  </footer>
+
+  <canvas id="ai-bg-canvas"></canvas>
+  <div class="ai-bg-overlay"></div>
+  <div class="ai-bg-retina"></div>
+
+  <!-- Typing animation script with forced start -->
+  <script>
+    (function(){
+      // Faster typing speed
+      const msPerChar = 50; // 50ms per character for quick, crisp typing
+
+      // Elements
+      const originalPara = document.getElementById('heroIntro');
+      const output = document.getElementById('typedOutput');
+      const cursor = document.getElementById('typedCursor');
+
+      // Preserve original HTML (exact)
+      const originalHTML = originalPara.innerHTML.trim();
+
+      // Tokenize: HTML tags as atomic tokens, text as single chars
+      function tokenizeHTML(html) {
+        const tokens = [];
+        let i = 0;
+        while (i < html.length) {
+          if (html[i] === '<') {
+            let j = i;
+            while (j < html.length && html[j] !== '>') j++;
+            tokens.push(html.slice(i, j + 1));
+            i = j + 1;
+          } else {
+            tokens.push(html[i]);
+            i++;
+          }
+        }
+        return tokens;
+      }
+
+      const tokens = tokenizeHTML(originalHTML);
+
+      // Hide original paragraph visually but keep for accessibility
+      originalPara.style.opacity = '0';
+      originalPara.style.position = 'absolute';
+      originalPara.style.pointerEvents = 'none';
+      originalPara.style.height = '0';
+      originalPara.style.overflow = 'hidden';
+
+      // Preload audio system
+      let audioCtx;
+      let clickBuffer;
+      
+      // Initialize and preload audio
+      async function preloadAudio() {
+        try {
+          // Create high-priority audio context
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+            latencyHint: 'interactive',
+            sampleRate: 44100
+          });
+
+          // Force immediate wake-up
+          await audioCtx.resume();
+          
+          // Pre-create click sound buffer
+          clickBuffer = audioCtx.createBuffer(1, Math.floor(0.018 * audioCtx.sampleRate), audioCtx.sampleRate);
+          const data = clickBuffer.getChannelData(0);
+          for (let i = 0; i < clickBuffer.length; i++) {
+            data[i] = (Math.random() * 2 - 1) * (1 - i / clickBuffer.length) * 0.26;
+          }
+          
+          // Warm up audio system with silent sound
+          const silent = audioCtx.createBuffer(1, 1, audioCtx.sampleRate);
+          const source = audioCtx.createBufferSource();
+          source.buffer = silent;
+          source.connect(audioCtx.destination);
+          source.start(0);
+          
+          // Create silent audio buffer to kickstart audio system
+          const buffer = audioCtx.createBuffer(1, 1, audioCtx.sampleRate);
+          const source = audioCtx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(audioCtx.destination);
+          source.start(0);
+          
+        } catch(e) {
+          console.log('Audio init attempt, will continue trying');
+        }
+      }
+      
+      // Initialize immediately
+      forceAudioInit();
+      
+      function playClick() {
+        if (!audioCtx || !clickBuffer) return;
+        
+        try {
+          // Use pre-created buffer for instant playback
+          const now = audioCtx.currentTime;
+          const src = audioCtx.createBufferSource();
+          src.buffer = clickBuffer;
+          const src = audioCtx.createBufferSource();
+          src.buffer = buffer;
+          const gain = audioCtx.createGain();
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(0.8, now + 0.0035);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'highshelf';
+          filter.frequency.value = 3000;
+          filter.gain.value = 6;
+
+          src.connect(filter);
+          filter.connect(gain);
+          gain.connect(audioCtx.destination);
+          src.start(now);
+          src.stop(now + 0.04);
+        } catch (e) {
+          // audio blocked or unavailable — ignore gracefully
+        }
+      }
+
+      function shouldPlayForChar(ch) {
+        if (!ch) return false;
+        if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') return false;
+        if (ch.startsWith('<')) return false;
+        return true;
+      }
+
+      // Simplified typing animation
+      // Type text character by character with animation
+      async function typeText(text, index = 0) {
+        return new Promise(resolve => {
+          function typeChar() {
+            if (index < text.length) {
+              const char = text[index];
+              if (char === '<') {
+                // Handle HTML tags
+                const endIndex = text.indexOf('>', index) + 1;
+                const tag = text.slice(index, endIndex);
+                output.innerHTML += tag;
+                index = endIndex;
+              } else {
+                // Add character and play sound
+                output.innerHTML += char;
+                if (char !== ' ' && char !== '\n') {
+                  playClick();
+                }
+              }
+              
+              index++;
+              // Continue typing with animation frame for smooth timing
+              requestAnimationFrame(() => {
+                setTimeout(typeChar, msPerChar);
+              });
+            } else {
+              // Animation complete
+              highlightPortfolioPhrase();
+              setTimeout(() => {
+                cursor.style.display = 'none';
+                resolve();
+              }, 420);
+            }
+          }
+          
+          typeChar();
+        });
+      }
+
+      // After typing completes, animate the portfolio phrase (MS Word bold/scale)
+      function highlightPortfolioPhrase() {
+        const phrase = "This is my PORTFOLIO.";
+        const html = output.innerHTML;
+        const idx = html.indexOf(phrase);
+        if (idx >= 0) {
+          const before = html.slice(0, idx);
+          const after = html.slice(idx + phrase.length);
+          const wrapped = `<span class="msword-bold" id="portfolioPhrase">${phrase}</span>`;
+          output.innerHTML = before + wrapped + after;
+
+          const el = document.getElementById('portfolioPhrase');
+          requestAnimationFrame(() => {
+            el.classList.add('pop');
+          });
+        }
+      }
+
+      // Start typing sequence once (ensures sound + typing on user gesture)
+      function startTypingSequenceOnce() {
+        if (typingStarted) return;
+        typingStarted = true;
+
+        // ensure cursor visible
+        cursor.style.visibility = 'visible';
+        // start visual typing
+        typeTokens(tokens, msPerChar).then(() => {
+          // Animate portfolio phrase and remove cursor after small delays
+          setTimeout(() => {
+            highlightPortfolioPhrase();
+            setTimeout(() => {
+              cursor.style.display = 'none';
+            }, 420);
+          }, 140);
+        });
+      }
+
+      // Attempt to start audio immediately and on any user interaction
+      async function initAudio() {
+        if (!audioCtx) return;
+        
+        try {
+          // Try to resume audio context
+          if (audioCtx.state === 'suspended') {
+            await audioCtx.resume();
+          }
+          
+          // Create and play a silent buffer to "warm up" the audio context
+          const buffer = audioCtx.createBuffer(1, 1, audioCtx.sampleRate);
+          const source = audioCtx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(audioCtx.destination);
+          source.start(0);
+          
+        } catch (e) {
+          console.log('Audio init attempt failed, will retry on interaction');
+        }
+      }
+
+      // Resume audio context and start typing on first user gesture
+      async function resumeAudioAndStart() {
+        await initAudio();
+        // Start typing (if not yet started)
+        startTypingSequenceOnce();
+        // remove listeners
+        window.removeEventListener('pointerdown', resumeAudioAndStart);
+        window.removeEventListener('keydown', resumeAudioAndStart);
+        window.removeEventListener('touchstart', resumeAudioAndStart);
+      }
+
+      // Ensure everything is ready before starting
+      async function forceStart() {
+        // Preload audio system first
+        await preloadAudio();
+        
+        // Pre-warm the audio system
+        for (let i = 0; i < 3; i++) {
+          playClick();
+          await new Promise(r => setTimeout(r, 50));
+        }
+        
+        // Hide original text
+        originalPara.style.opacity = '0';
+        originalPara.style.position = 'absolute';
+        originalPara.style.pointerEvents = 'none';
+        originalPara.style.height = '0';
+        originalPara.style.overflow = 'hidden';
+
+        // Show cursor and start typing
+        cursor.style.visibility = 'visible';
+        typeText(originalHTML);
+      }
+
+      // Start immediately when script loads
+      forceStart();
+
+      // Backup: if animation didn't start, try again when document is ready
+      if (!output.innerHTML) {
+        document.addEventListener('DOMContentLoaded', forceStart);
+      }
+
+    })();
+  </script>
+
+  <!-- Your original scripts — left unchanged as requested -->
+  <script src="slider.js"></script>
+  <script src="hanoi.js"></script>
+  <script src="header-typing.js"></script>
+  <script src="nav-active.js"></script>
+  <script src="ai-bg.js" defer></script>
+  <script src="sticky_header.js"></script>
+  <script src="home-nav-sticky.js"></script>
+</body>
+</html>

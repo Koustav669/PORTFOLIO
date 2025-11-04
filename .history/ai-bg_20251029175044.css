@@ -1,0 +1,34 @@
+/* ai-bg.css
+   Full-screen animated neural-network background styles.
+   Keeps canvas behind page content and non-interactive.
+*/
+
+:root{
+  --ai-bg-z-index: -1;
+}
+
+#ai-bg-canvas{
+  position:fixed;
+  inset:0; /* top:0; right:0; bottom:0; left:0; */
+  width:100vw;
+  height:100vh;
+  z-index:var(--ai-bg-z-index);
+  pointer-events:none; /* never capture mouse/touch */
+  display:block;
+}
+
+/* Make sure body content renders above canvas */
+body{
+  position:relative;
+  background: #05060a; /* dark base */
+}
+
+/* Optional: subtle overlay to deepen contrast without changing content */
+.ai-bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:calc(var(--ai-bg-z-index) + 1);
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(2,8,20,0.12), rgba(0,0,0,0.25));
+  mix-blend-mode: normal;
+}
