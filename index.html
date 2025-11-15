@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="ai-bg.css" />
   <link rel="stylesheet" href="sticky_header.css" />
   <style>
+    #marqueeText {
+  position: fixed !important;
+  will-change: transform;
+  pointer-events: none !important;
+}
+
     /* --- HERO CENTERING FIX --- */
     .hero-intro {
       font-family: 'Poppins', sans-serif;
@@ -490,51 +496,76 @@ transform: translateX(-50%);
         }
       }
       function startMarquee() {
-        const phrase = "This is my PORTFOLIO.";
-        marqueeText.textContent = phrase;
-        marqueeContainer.style.display = 'block';
-        marqueeContainer.style.visibility = 'visible';
-        marqueeContainer.style.opacity = '1';
-        marqueeText.style.display = 'block';
-        marqueeText.style.visibility = 'visible';
-        marqueeText.style.opacity = '1';
-        if (window.__marqueeInterval) clearInterval(window.__marqueeInterval);
+    const phrase = "This is my PORTFOLIO.";
+    marqueeText.textContent = phrase;
+
+    // Make marquee visible
+    marqueeContainer.style.display = 'block';
+    marqueeContainer.style.visibility = 'visible';
+    marqueeContainer.style.opacity = '1';
+    marqueeText.style.display = 'block';
+    marqueeText.style.visibility = 'visible';
+    marqueeText.style.opacity = '1';
+
+    // Reset interval if already running
+    if (window.__marqueeInterval) clearInterval(window.__marqueeInterval);
+
+    marqueeText.style.transition = 'none';
+    void marqueeText.offsetWidth;
+
+    const textW = marqueeText.offsetWidth;
+    const viewportW = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+    );
+
+    // Calculate proper center position
+    const contRect = marqueeContainer.getBoundingClientRect();
+    const viewportH = Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+    );
+
+    let topPos = Math.round(contRect.top + contRect.height / 2);
+    if (topPos < 40 || topPos > viewportH - 40)
+        topPos = Math.round(viewportH / 2);
+
+    // FIX: Lock marquee to fullscreen + stop scrolling effect
+    marqueeText.style.position = 'fixed';
+    marqueeText.style.top = topPos + 'px';
+    marqueeText.style.left = '0px';
+    marqueeText.style.pointerEvents = 'none';
+    marqueeText.style.zIndex = 999999;
+    marqueeText.style.willChange = 'transform';
+
+    const startX = viewportW + 8;
+    const endX = -textW - 8;
+
+    const baseDuration = 12000;
+    const travel = Math.abs(startX - endX);
+    const duration = Math.max(
+        5000,
+        Math.round(baseDuration * (travel / (viewportW + textW)))
+    );
+
+    function runOnce() {
         marqueeText.style.transition = 'none';
-        marqueeText.style.opacity = '1';
-        marqueeText.style.visibility = 'visible';
-        marqueeText.style.display = 'block';
+        marqueeText.style.transform =
+            `translateX(${startX}px) translateY(-50%)`;
+
         void marqueeText.offsetWidth;
-        const textW = marqueeText.offsetWidth;
-        const viewportW = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        marqueeText.style.position = 'fixed';
-        marqueeText.style.zIndex = 99999;
-        const contRect = marqueeContainer.getBoundingClientRect();
-        const viewportH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-        let topPos = Math.round(contRect.top + contRect.height / 2);
-        if (topPos < 40 || topPos > viewportH - 40) topPos = Math.round(viewportH / 2);
-        marqueeText.style.top = topPos + 'px';
-        marqueeText.style.left = '0px';
-        marqueeText.style.willChange = 'transform';
-        const startX = viewportW + 8;
-        const endX = -textW - 8;
-        const baseDuration = 12000;
-        const travel = Math.abs(startX - endX);
-        const duration = Math.max(5000, Math.round(baseDuration * (travel / (viewportW + textW))));
-        function runOnce() {
-          marqueeText.style.transition = 'none';
-          marqueeText.style.transform = `translateX(${startX}px) translateY(-50%)`;
-          void marqueeText.offsetWidth;
-          requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
             marqueeText.style.transition = `transform ${duration}ms linear`;
-            marqueeText.style.transform = `translateX(${endX}px) translateY(-50%)`;
-          });
-        }
-        marqueeContainer.style.display = 'block';
-        marqueeContainer.style.visibility = 'visible';
-        marqueeContainer.style.opacity = '1';
-        runOnce();
-        window.__marqueeInterval = setInterval(runOnce, duration + 600);
-      }
+            marqueeText.style.transform =
+                `translateX(${endX}px) translateY(-50%)`;
+        });
+    }
+
+    runOnce();
+    window.__marqueeInterval = setInterval(runOnce, duration + 600);
+}
+
       function restoreHTMLAndHighlight() {
         const phrase = "This is my PORTFOLIO.";
         const parent = output.parentElement;
