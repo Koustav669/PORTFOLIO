@@ -55,7 +55,7 @@
       margin: 0 auto;
       overflow: hidden;
       border-radius: 15px;
-      height: 460px; /* fixed visual height for symmetry */
+      height: 460px;
       display: block;
       background: rgba(0,0,0,0.04);
     }
@@ -73,7 +73,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #03060a;
+      background-color: transparent; /* CHANGED: Was #03060a — hiding image if load fails */
       box-sizing: border-box;
       padding: 12px;
     }
@@ -86,8 +86,10 @@
       object-fit: contain;
       border-radius: 10px;
       display: block;
+      background: transparent; /* Ensure no background hides image */
     }
 
+    /* FIXED: Background image with fallback and forced visibility */
     .site-header {
       position: relative;
       z-index: 1;
@@ -100,9 +102,11 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: url('BG.png') top center no-repeat;
-      background-size: cover;
+      background: url('BG.png') top center / cover no-repeat;
+      background-color: #000; /* Fallback if image fails */
       z-index: -1;
+      opacity: 0.7; /* Slightly dim to not overpower content */
+      pointer-events: none;
     }
 
     .site-header {
@@ -237,41 +241,12 @@
     }
 
     @keyframes electrifyDisappear {
-      0% {
-        transform: scale(1.22);
-        opacity: 1;
-        filter: brightness(1);
-      }
-      20% {
-        transform: scale(1.3);
-        opacity: 1;
-        filter: brightness(2) blur(0px);
-        text-shadow: 0 0 40px #00ffff, 0 0 80px #00eaff, 0 0 120px #0077ff;
-      }
-      40% {
-        transform: scale(1.4);
-        opacity: 0.8;
-        filter: brightness(3) blur(2px);
-        text-shadow: 0 0 60px #00ffff, 0 0 120px #00eaff, 0 0 180px #0077ff;
-      }
-      60% {
-        transform: scale(1.5);
-        opacity: 0.4;
-        filter: brightness(4) blur(4px);
-        text-shadow: 0 0 80px #00ffff, 0 0 160px #00eaff, 0 0 240px #0077ff;
-      }
-      80% {
-        transform: scale(1.6);
-        opacity: 0.1;
-        filter: brightness(5) blur(8px);
-        text-shadow: 0 0 100px #00ffff, 0 0 200px #00eaff, 0 0 300px #0077ff;
-      }
-      100% {
-        transform: scale(2);
-        opacity: 0;
-        filter: brightness(6) blur(15px);
-        text-shadow: 0 0 150px #00ffff, 0 0 300px #00eaff, 0 0 450px #0077ff;
-      }
+      0% { transform: scale(1.22); opacity: 1; filter: brightness(1); }
+      20% { transform: scale(1.3); opacity: 1; filter: brightness(2) blur(0px); text-shadow: 0 0 40px #00ffff, 0 0 80px #00eaff, 0 0 120px #0077ff; }
+      40% { transform: scale(1.4); opacity: 0.8; filter: brightness(3) blur(2px); text-shadow: 0 0 60px #00ffff, 0 0 120px #00eaff, 0 0 180px #0077ff; }
+      60% { transform: scale(1.5); opacity: 0.4; filter: brightness(4) blur(4px); text-shadow: 0 0 80px #00ffff, 0 0 160px #00eaff, 0 0 240px #0077ff; }
+      80% { transform: scale(1.6); opacity: 0.1; filter: brightness(5) blur(8px); text-shadow: 0 0 100px #00ffff, 0 0 200px #00eaff, 0 0 300px #0077ff; }
+      100% { transform: scale(2); opacity: 0; filter: brightness(6) blur(15px); text-shadow: 0 0 150px #00ffff, 0 0 300px #00eaff, 0 0 450px #0077ff; }
     }
 
     #marqueeContainer {
@@ -306,12 +281,8 @@
     }
 
     @keyframes marqueeScrollContinuous {
-      0% {
-        transform: translateY(-50%) translateX(100vw);
-      }
-      100% {
-        transform: translateY(-50%) translateX(-150%);
-      }
+      0% { transform: translateY(-50%) translateX(100vw); }
+      100% { transform: translateY(-50%) translateX(-150%); }
     }
 
     .hero-inner {
@@ -333,52 +304,23 @@
     }
     
     @keyframes welcomeEntrance {
-      0% {
-        transform: scale(0.5) rotateY(90deg);
-        opacity: 0;
-        filter: blur(20px);
-      }
-      30% {
-        transform: scale(1.2) rotateY(0deg);
-        opacity: 1;
-        filter: blur(0px);
-      }
-      50% {
-        transform: scale(1) rotateY(0deg);
-        opacity: 1;
-        filter: blur(0px);
-      }
-      70% {
-        transform: scale(1.1) rotateY(0deg);
-        opacity: 1;
-        filter: blur(0px);
-      }
-      100% {
-        transform: scale(5) rotateX(90deg);
-        opacity: 0;
-        filter: blur(30px) brightness(3);
-      }
+      0% { transform: scale(0.5) rotateY(90deg); opacity: 0; filter: blur(20px); }
+      30% { transform: scale(1.2) rotateY(0deg); opacity: 1; filter: blur(0px); }
+      50% { transform: scale(1) rotateY(0deg); opacity: 1; filter: blur(0px); }
+      70% { transform: scale(1.1) rotateY(0deg); opacity: 1; filter: blur(0px); }
+      100% { transform: scale(5) rotateX(90deg); opacity: 0; filter: blur(30px) brightness(3); }
     }
     
     @keyframes electricBurst {
-      0%, 100% {
-        box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
-      }
-      25% {
-        box-shadow: 0 0 40px #00ffff, 0 0 80px #0077ff, 0 0 120px #00eaff;
-      }
-      50% {
-        box-shadow: 0 0 60px #00eaff, 0 0 120px #00ffff, 0 0 180px #0077ff;
-      }
-      75% {
-        box-shadow: 0 0 40px #0077ff, 0 0 80px #00eaff, 0 0 120px #00ffff;
-      }
+      0%, 100% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
+      25% { box-shadow: 0 0 40px #00ffff, 0 0 80px #0077ff, 0 0 120px #00eaff; }
+      50% { box-shadow: 0 0 60px #00eaff, 0 0 120px #00ffff, 0 0 180px #0077ff; }
+      75% { box-shadow: 0 0 40px #0077ff, 0 0 80px #00eaff, 0 0 120px #00ffff; }
     }
 
-    /* RESPONSIVE WELCOME TEXT - KEY FIX */
     .welcome-text {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 8rem); /* Scales from 2.5rem to 8rem based on viewport */
+      font-size: clamp(2.5rem, 8vw, 8rem);
       font-weight: 800;
       color: #ffffff;
       text-shadow: 
@@ -387,15 +329,14 @@
         0 0 120px #00eaff,
         0 0 160px #00ffff,
         0 0 200px #0077ff;
-      letter-spacing: clamp(5px, 2vw, 20px); /* Scales letter spacing */
+      letter-spacing: clamp(5px, 2vw, 20px);
       animation: welcomeEntrance 3s ease-in-out forwards, electricBurst 0.5s ease-in-out infinite;
       text-transform: uppercase;
       white-space: nowrap;
       text-align: center;
-      padding: 0 20px; /* Padding to prevent edge cutoff */
+      padding: 0 20px;
     }
 
-    /* Mobile-specific adjustments */
     @media (max-width: 768px) {
       .welcome-text {
         font-size: clamp(2rem, 10vw, 4rem);
@@ -410,7 +351,6 @@
       }
     }
 
-    /* Desktop mode on mobile - ensure smooth rendering */
     .desktop-mode-mobile {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -420,10 +360,11 @@
       min-width: 1920px;
     }
 
-    /* FIX: Center Gallery Title */
+    /* FIXED: Center Gallery Title */
     .gallery-title {
       text-align: center;
-      margin: 40px 0 20px;
+      margin: 40px auto 20px;
+      width: 100%;
     }
     .gallery-title h1 {
       font-family: 'Orbitron', sans-serif;
@@ -446,7 +387,7 @@
       </div>
       <div class="role">
         <span id="role-text"></span>
-        <span class="role-cursor" id="role-cursor">▍</span>
+        <span class="role-cursor" id="role-cursor">Block</span>
       </div>
     </div>
   </header>
@@ -461,7 +402,7 @@
 
         <p class="hero-intro" style="margin-top: 6px;">
           <span id="typedOutput" class="type-output" aria-hidden="false"></span>
-          <span id="typedCursor" class="type-cursor" aria-hidden="true">▍</span>
+          <span id="typedCursor" class="type-cursor" aria-hidden="true">Block</span>
         </p>
       </div>
 
@@ -495,13 +436,13 @@
     <div class="gallery-title"><h1>Gallery</h1></div>
     <div class="slider">
       <div class="slides">
-        <!-- FIXED: Correct filename and extension -->
+        <!-- CORRECT: Using exact filename -->
         <div class="slide"><img src="My_picture.png" alt="Portfolio Profile Photo"></div>
         <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
         <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
       </div>
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
+      <button class="prev">Previous</button>
+      <button class="next">Next</button>
     </div>
   </section>
 
@@ -514,11 +455,10 @@
   <div class="ai-bg-overlay"></div>
   <div class="ai-bg-retina"></div>
 
+  <!-- All scripts unchanged -->
   <script>
-    // Force desktop mode on mobile devices
     (function() {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
       if (isMobile) {
         let viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
@@ -620,7 +560,6 @@
 
       function startMarquee() {
         const phrase = "This is my PORTFOLIO.";
-
         marqueeText.textContent = phrase;
         marqueeContainer.style.display = 'block';
         marqueeContainer.style.visibility = 'visible';
@@ -732,32 +671,18 @@
         const overlay = document.createElement('div');
         overlay.id = 'startOverlay';
         overlay.style.cssText = `
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.95);
-          z-index: 9999999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          backdrop-filter: blur(10px);
+          position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+          background: rgba(0, 0, 0, 0.95); z-index: 9999999;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer; backdrop-filter: blur(10px);
         `;
         
         const button = document.createElement('div');
         button.style.cssText = `
-          font-family: 'Poppins', sans-serif;
-          font-size: 2rem;
-          font-weight: 700;
-          color: #00ffff;
-          text-shadow: 0 0 30px #00ffff, 0 0 60px #0077ff;
-          padding: 30px 60px;
-          border: 3px solid #00ffff;
-          border-radius: 10px;
-          background: rgba(0, 100, 200, 0.1);
-          animation: pulse 2s ease-in-out infinite;
+          font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700;
+          color: #00ffff; text-shadow: 0 0 30px #00ffff, 0 0 60px #0077ff;
+          padding: 30px 60px; border: 3px solid #00ffff; border-radius: 10px;
+          background: rgba(0, 100, 200, 0.1); animation: pulse 2s ease-in-out infinite;
           user-select: none;
         `;
         button.textContent = 'Click To See My Portfolio';
@@ -770,18 +695,9 @@
           
           const welcomeContainer = document.createElement('div');
           welcomeContainer.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000000;
-            pointer-events: none;
-            padding: 0 20px;
-            box-sizing: border-box;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000000; pointer-events: none; padding: 0 20px; box-sizing: border-box;
           `;
           
           const welcomeText = document.createElement('div');
@@ -817,7 +733,6 @@
       } else {
         document.addEventListener('DOMContentLoaded', () => setTimeout(tryStart, 120));
       }
-
     })();
   </script>
 
