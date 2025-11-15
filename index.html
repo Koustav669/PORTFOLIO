@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="ai-bg.css" />
   <link rel="stylesheet" href="sticky_header.css" />
   <style>
+    #marqueeContainer {
+  position: fixed !important;
+  top: 50% !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100px !important;
+  transform: translateY(-50%) !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
     #marqueeText {
   position: fixed !important;
   will-change: transform;
