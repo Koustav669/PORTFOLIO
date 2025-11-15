@@ -92,21 +92,7 @@ transform: translateX(-50%);
       position: relative;
       z-index: 1;
     }
-   .site-header::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('BG.png') center top / cover no-repeat,
-              url('https://via.placeholder.com/1920x1080/000033/00ffff?text=BG+LOAD+ERROR') center top / cover no-repeat;
-  background-color: #000;
-  z-index: -1;
-  opacity: 0.7;
-  pointer-events: none;
-     background-size: cover !important; background-position: center !important;
-}
+   .site-header::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: url('BG.png') top center / cover no-repeat, url('https://via.placeholder.com/1920x1080/000033/00ffff?text=BG+LOAD+ERROR') top center / cover no-repeat; background-color: #000; z-index: -1; opacity: 0.7; pointer-events: none; background-size: cover !important; background-position: center !important; }
 
     .site-header {
       position: fixed;
