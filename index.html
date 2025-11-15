@@ -4,14 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1920, initial-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
   <title>Koustav | Visual Systems Architect</title>
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&family=Rajdhani:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="ai-bg.css" />
   <link rel="stylesheet" href="sticky_header.css" />
-
   <style>
     /* --- HERO CENTERING FIX --- */
     .hero-intro {
@@ -27,7 +24,6 @@
       display: block;
       word-wrap: break-word;
     }
-
     .hero-intro-wrapper {
       text-align: center;
       width: 100%;
@@ -37,7 +33,6 @@
       justify-content: center;
       margin-bottom: 30px;
     }
-
     .type-output {
       display: block;
       text-align: center;
@@ -46,7 +41,6 @@
       margin: 0 auto;
       line-height: 1.7;
     }
-
     /* Gallery slider - uniform slide box and centered images */
     .slider {
       position: relative;
@@ -59,25 +53,22 @@
       display: block;
       background: rgba(0,0,0,0.04);
     }
-
     .slides {
       display: flex;
       height: 100%;
       transition: transform 0.6s ease-in-out;
       will-change: transform;
     }
-
     .slide {
       flex: 0 0 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: transparent; /* CHANGED: Was #03060a — hiding image if load fails */
+      background-color: transparent;
       box-sizing: border-box;
       padding: 12px;
     }
-
     .slide img {
       max-width: 100%;
       max-height: 100%;
@@ -86,15 +77,16 @@
       object-fit: contain;
       border-radius: 10px;
       display: block;
-      background: transparent; /* Ensure no background hides image */
+      background: transparent;
+      /* Force visibility */
+      opacity: 1 !important;
+      visibility: visible !important;
     }
-
     /* FIXED: Background image with fallback and forced visibility */
     .site-header {
       position: relative;
       z-index: 1;
     }
-
     .site-header::before {
       content: '';
       position: fixed;
@@ -102,13 +94,17 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: url('BG.png') top center / cover no-repeat;
-      background-color: #000; /* Fallback if image fails */
+      background: url('bg.png') top center / cover no-repeat,
+                  url('BG.png') top center / cover no-repeat,
+                  url('https://via.placeholder.com/1920x1080/000033/00ffff?text=BG+LOAD+ERROR') top center / cover no-repeat;
+      background-color: #000;
       z-index: -1;
-      opacity: 0.7; /* Slightly dim to not overpower content */
+      opacity: 0.7;
       pointer-events: none;
+      /* Force image */
+      background-size: cover !important;
+      background-position: center !important;
     }
-
     .site-header {
       position: fixed;
       top: 0;
@@ -119,7 +115,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
       z-index: 99999;
     }
-
     .site-header::after {
       content: '';
       position: absolute;
@@ -130,7 +125,6 @@
       background: linear-gradient(to bottom, rgba(10,10,25,0.4) 0%, rgba(10,10,25,0.3) 100%);
       z-index: -1;
     }
-
     .hero {
       position: relative;
       display: flex;
@@ -140,7 +134,6 @@
       padding: 0 20px;
       text-align: center;
     }
-
     .hero-inner {
       max-width: 900px;
       width: 100%;
@@ -152,7 +145,6 @@
       align-items: center;
       min-height: 100vh;
     }
-
     .brand-accent-line {
       display: block;
       width: 90px;
@@ -163,12 +155,10 @@
       box-shadow: 0 0 25px #0077ff, 0 0 70px #004cff, 0 0 120px #00eaff;
       animation: zapLine 0.4s infinite;
     }
-
     @keyframes zapLine {
       0%, 20%, 50%, 100% { opacity: 1; filter: brightness(1.5); }
       10%, 60%, 80% { opacity: 0.3; filter: brightness(3); }
     }
-
     .hero-title {
       font-family: 'Orbitron', sans-serif;
       font-size: 3rem;
@@ -180,7 +170,6 @@
       margin-bottom: 20px !important;
       margin-top: 50px !important;
     }
-
     @keyframes shockFlicker {
       0%, 85%, 100% {
         text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
@@ -191,7 +180,6 @@
         transform: translateX(1px) skewX(0.5deg);
       }
     }
-
     .hero-sub {
       font-family: 'Poppins', sans-serif;
       font-size: 1.2rem;
@@ -201,18 +189,15 @@
       margin-bottom: 30px !important;
       margin-top: 0 !important;
     }
-
     @keyframes electricHum {
       0%, 100% { opacity: 1; filter: brightness(1); }
       50% { opacity: 0.85; filter: brightness(1.3); }
     }
-
-    .hero-cta { 
+    .hero-cta {
       margin-bottom: 25px !important;
       margin-top: 0 !important;
     }
-
-    .hero-nav { 
+    .hero-nav {
       margin-top: 20px !important;
       width: 100%;
       position: sticky;
@@ -221,7 +206,6 @@
       transition: all 0.3s ease;
       padding: 12px 0;
     }
-
     .msword-bold {
       display: inline-block;
       font-weight: 700;
@@ -229,17 +213,14 @@
       transition: transform 260ms ease, text-shadow 260ms ease;
       text-shadow: 0 0 12px rgba(255,255,255,0.15);
     }
-
     .msword-bold.pop {
       transform: scale(1.22);
       text-shadow: 0 0 24px rgba(0,200,255,0.45);
       color: #ffffff;
     }
-
     .msword-bold.electrify-out {
       animation: electrifyDisappear 0.8s ease-out forwards;
     }
-
     @keyframes electrifyDisappear {
       0% { transform: scale(1.22); opacity: 1; filter: brightness(1); }
       20% { transform: scale(1.3); opacity: 1; filter: brightness(2) blur(0px); text-shadow: 0 0 40px #00ffff, 0 0 80px #00eaff, 0 0 120px #0077ff; }
@@ -248,7 +229,6 @@
       80% { transform: scale(1.6); opacity: 0.1; filter: brightness(5) blur(8px); text-shadow: 0 0 100px #00ffff, 0 0 200px #00eaff, 0 0 300px #0077ff; }
       100% { transform: scale(2); opacity: 0; filter: brightness(6) blur(15px); text-shadow: 0 0 150px #00ffff, 0 0 300px #00eaff, 0 0 450px #0077ff; }
     }
-
     #marqueeContainer {
       position: relative;
       width: 100vw;
@@ -262,7 +242,6 @@
       display: block !important;
       order: 2;
     }
-
     #marqueeText {
       position: absolute;
       top: 50%;
@@ -279,30 +258,26 @@
       pointer-events: none;
       z-index: 1100;
     }
-
     @keyframes marqueeScrollContinuous {
       0% { transform: translateY(-50%) translateX(100vw); }
       100% { transform: translateY(-50%) translateX(-150%); }
     }
-
     .hero-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .hero-intro-wrapper { order: 1; }
     .hero-title { order: 3; }
     .hero-sub { order: 4; }
     .hero-cta { order: 5; }
     .hero-nav { order: 6; }
-
     /* RESPONSIVE WELCOME ANIMATION */
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.05); opacity: 0.8; }
     }
-    
+   
     @keyframes welcomeEntrance {
       0% { transform: scale(0.5) rotateY(90deg); opacity: 0; filter: blur(20px); }
       30% { transform: scale(1.2) rotateY(0deg); opacity: 1; filter: blur(0px); }
@@ -310,20 +285,19 @@
       70% { transform: scale(1.1) rotateY(0deg); opacity: 1; filter: blur(0px); }
       100% { transform: scale(5) rotateX(90deg); opacity: 0; filter: blur(30px) brightness(3); }
     }
-    
+   
     @keyframes electricBurst {
       0%, 100% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
       25% { box-shadow: 0 0 40px #00ffff, 0 0 80px #0077ff, 0 0 120px #00eaff; }
       50% { box-shadow: 0 0 60px #00eaff, 0 0 120px #00ffff, 0 0 180px #0077ff; }
       75% { box-shadow: 0 0 40px #0077ff, 0 0 80px #00eaff, 0 0 120px #00ffff; }
     }
-
     .welcome-text {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(2.5rem, 8vw, 8rem);
       font-weight: 800;
       color: #ffffff;
-      text-shadow: 
+      text-shadow:
         0 0 40px #00ffff,
         0 0 80px #0077ff,
         0 0 120px #00eaff,
@@ -336,35 +310,32 @@
       text-align: center;
       padding: 0 20px;
     }
-
     @media (max-width: 768px) {
       .welcome-text {
         font-size: clamp(2rem, 10vw, 4rem);
         letter-spacing: clamp(3px, 1.5vw, 10px);
       }
     }
-
     @media (max-width: 480px) {
       .welcome-text {
         font-size: clamp(1.8rem, 12vw, 3rem);
         letter-spacing: clamp(2px, 1vw, 8px);
       }
     }
-
     .desktop-mode-mobile {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
-    
+   
     .desktop-mode-mobile body {
       min-width: 1920px;
     }
-
-    /* FIXED: Center Gallery Title */
+    /* FIXED: Center Gallery Title - FORCED */
     .gallery-title {
-      text-align: center;
-      margin: 40px auto 20px;
-      width: 100%;
+      text-align: center !important;
+      margin: 40px auto 20px !important;
+      width: 100% !important;
+      display: block !important;
     }
     .gallery-title h1 {
       font-family: 'Orbitron', sans-serif;
@@ -372,12 +343,12 @@
       font-weight: 800;
       color: #d9faff;
       text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
-      margin: 0;
-      display: inline-block;
+      margin: 0 auto !important;
+      display: inline-block !important;
+      text-align: center !important;
     }
   </style>
 </head>
-
 <body class="home-page">
   <header class="site-header">
     <div class="header-inner">
@@ -391,7 +362,6 @@
       </div>
     </div>
   </header>
-
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-intro-wrapper">
@@ -399,25 +369,20 @@
           Hi, I'm <strong>Koustav Das</strong> — an AI and Machine Learning visionary, crafting systems that think, adapt, and inspire.<br>
           This is my PORTFOLIO.
         </p>
-
         <p class="hero-intro" style="margin-top: 6px;">
           <span id="typedOutput" class="type-output" aria-hidden="false"></span>
           <span id="typedCursor" class="type-cursor" aria-hidden="true">Block</span>
         </p>
       </div>
-
       <div id="marqueeContainer" style="order: 2;">
         <div id="marqueeText"></div>
       </div>
-
       <h2 class="hero-title">Not Just Code. A Manifesto.</h2>
       <p class="hero-sub">Minimal. Relentless. Visual. Built to make you stop, think, and feel.</p>
-
       <div class="hero-cta">
         <a id="github-cta" class="btn resume" href="https://github.com/koustav669" target="_blank">View GitHub</a>
         <a class="btn resume" href="#">Resume</a>
       </div>
-
       <nav class="hero-nav">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
@@ -431,13 +396,19 @@
       </nav>
     </div>
   </section>
-
   <section id="Gallery">
     <div class="gallery-title"><h1>Gallery</h1></div>
     <div class="slider">
       <div class="slides">
-        <!-- CORRECT: Using exact filename -->
-        <div class="slide"><img src="My_picture.png" alt="Portfolio Profile Photo"></div>
+        <!-- FORCED IMAGE WITH FALLBACKS -->
+        <div class="slide">
+          <img 
+            src="my_picture.png" 
+            onerror="this.onerror=null; this.src='My_picture.png'; setTimeout(() => { if(this.naturalWidth===0) this.src='https://via.placeholder.com/800x600/001133/00ffff?text=Koustav+Das'; }, 100);"
+            alt="Portfolio Profile Photo"
+            style="opacity:0; transition:opacity 0.5s;"
+            onload="this.style.opacity=1;">
+        </div>
         <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
         <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
       </div>
@@ -445,15 +416,19 @@
       <button class="next">Next</button>
     </div>
   </section>
-
   <footer>
     <p>© 2025 Koustav. Built with precision and pride.</p>
     <p>Last updated 11th October 2025</p>
   </footer>
-
   <canvas id="ai-bg-canvas"></canvas>
   <div class="ai-bg-overlay"></div>
   <div class="ai-bg-retina"></div>
+
+  <!-- PRELOAD CRITICAL IMAGES -->
+  <link rel="preload" href="bg.png" as="image">
+  <link rel="preload" href="BG.png" as="image">
+  <link rel="preload" href="my_picture.png" as="image">
+  <link rel="preload" href="My_picture.png" as="image">
 
   <!-- All scripts unchanged -->
   <script>
@@ -468,32 +443,26 @@
       }
     })();
   </script>
-
   <script>
     (function(){
       const WPM = 160;
       const AVG_CHARS_PER_WORD = 5;
       const msPerChar = Math.max(20, Math.round(60000 / (WPM * AVG_CHARS_PER_WORD)));
-
       const originalPara = document.getElementById('heroIntro');
       const output = document.getElementById('typedOutput');
       const cursor = document.getElementById('typedCursor');
       const marqueeContainer = document.getElementById('marqueeContainer');
       const marqueeText = document.getElementById('marqueeText');
-
       const originalHTML = originalPara.innerHTML.trim();
       const plainText = originalPara.textContent.replace(/\u00A0/g, ' ').trim();
-
       originalPara.style.opacity = '0';
       originalPara.style.position = 'absolute';
       originalPara.style.pointerEvents = 'none';
       originalPara.style.height = '0';
       originalPara.style.overflow = 'hidden';
       originalPara.setAttribute('aria-hidden', 'true');
-
       let audioCtx = null;
       let audioUnlocked = false;
-
       function initAudio() {
         if (!audioCtx) {
           audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -507,7 +476,6 @@
           audioUnlocked = true;
         }
       }
-
       function playClick() {
         try {
           if (!audioCtx) initAudio();
@@ -525,12 +493,10 @@
           gain.gain.setValueAtTime(0.0001, now);
           gain.gain.exponentialRampToValueAtTime(0.8, now + 0.0035);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
-
           const filter = audioCtx.createBiquadFilter();
           filter.type = 'highshelf';
           filter.frequency.value = 3000;
           filter.gain.value = 6;
-
           src.connect(filter);
           filter.connect(gain);
           gain.connect(audioCtx.destination);
@@ -538,13 +504,10 @@
           src.stop(now + 0.04);
         } catch (e) {}
       }
-
       function shouldPlayForChar(ch) {
         return ch && ch.trim() !== '';
       }
-
       let typingStarted = false;
-
       async function typePlainText(text, delay) {
         output.textContent = '';
         cursor.style.visibility = 'visible';
@@ -557,7 +520,6 @@
           await new Promise(r => setTimeout(r, Math.max(10, Math.round(nextDelay))));
         }
       }
-
       function startMarquee() {
         const phrase = "This is my PORTFOLIO.";
         marqueeText.textContent = phrase;
@@ -567,18 +529,14 @@
         marqueeText.style.display = 'block';
         marqueeText.style.visibility = 'visible';
         marqueeText.style.opacity = '1';
-
         if (window.__marqueeInterval) clearInterval(window.__marqueeInterval);
-
         marqueeText.style.transition = 'none';
         marqueeText.style.opacity = '1';
         marqueeText.style.visibility = 'visible';
         marqueeText.style.display = 'block';
         void marqueeText.offsetWidth;
-
         const textW = marqueeText.offsetWidth;
         const viewportW = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-
         marqueeText.style.position = 'fixed';
         marqueeText.style.zIndex = 99999;
         const contRect = marqueeContainer.getBoundingClientRect();
@@ -588,33 +546,26 @@
         marqueeText.style.top = topPos + 'px';
         marqueeText.style.left = '0px';
         marqueeText.style.willChange = 'transform';
-
         const startX = viewportW + 8;
         const endX = -textW - 8;
-
         const baseDuration = 12000;
         const travel = Math.abs(startX - endX);
         const duration = Math.max(5000, Math.round(baseDuration * (travel / (viewportW + textW))));
-
         function runOnce() {
           marqueeText.style.transition = 'none';
           marqueeText.style.transform = `translateX(${startX}px) translateY(-50%)`;
           void marqueeText.offsetWidth;
-
           requestAnimationFrame(() => {
             marqueeText.style.transition = `transform ${duration}ms linear`;
             marqueeText.style.transform = `translateX(${endX}px) translateY(-50%)`;
           });
         }
-
         marqueeContainer.style.display = 'block';
         marqueeContainer.style.visibility = 'visible';
         marqueeContainer.style.opacity = '1';
-
         runOnce();
         window.__marqueeInterval = setInterval(runOnce, duration + 600);
       }
-
       function restoreHTMLAndHighlight() {
         const phrase = "This is my PORTFOLIO.";
         const parent = output.parentElement;
@@ -628,7 +579,7 @@
           const wrapped = `<span class="msword-bold" id="portfolioPhrase">${phrase}</span>`;
           parent.querySelector('#typedOutput').innerHTML = before + wrapped + after;
           const el = document.getElementById('portfolioPhrase');
-          requestAnimationFrame(() => { 
+          requestAnimationFrame(() => {
             el.classList.add('pop');
             setTimeout(() => {
               el.classList.add('electrify-out');
@@ -638,21 +589,19 @@
         }
         cursor.style.display = 'none';
       }
-
       async function startTypingOnce() {
         if (typingStarted) return;
         typingStarted = true;
         initAudio();
         await new Promise(r => setTimeout(r, 50));
         try { await typePlainText(plainText, msPerChar); }
-        finally { 
+        finally {
           setTimeout(() => {
             restoreHTMLAndHighlight();
             setTimeout(startMarquee, 220);
           }, 80);
         }
       }
-
       function forceUnlockAudio() {
         initAudio();
         if (audioCtx && audioCtx.state === 'suspended') {
@@ -666,7 +615,6 @@
         }
         startTypingOnce();
       }
-
       function createStartOverlay() {
         const overlay = document.createElement('div');
         overlay.id = 'startOverlay';
@@ -676,7 +624,7 @@
           display: flex; align-items: center; justify-content: center;
           cursor: pointer; backdrop-filter: blur(10px);
         `;
-        
+       
         const button = document.createElement('div');
         button.style.cssText = `
           font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700;
@@ -686,31 +634,31 @@
           user-select: none;
         `;
         button.textContent = 'Click To See My Portfolio';
-        
+       
         overlay.appendChild(button);
         document.body.appendChild(overlay);
-        
+       
         overlay.addEventListener('click', () => {
           button.style.display = 'none';
-          
+         
           const welcomeContainer = document.createElement('div');
           welcomeContainer.style.cssText = `
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             display: flex; align-items: center; justify-content: center;
             z-index: 10000000; pointer-events: none; padding: 0 20px; box-sizing: border-box;
           `;
-          
+         
           const welcomeText = document.createElement('div');
           welcomeText.className = 'welcome-text';
           welcomeText.textContent = 'WELCOME';
           welcomeContainer.appendChild(welcomeText);
           document.body.appendChild(welcomeContainer);
-          
+         
           initAudio();
           setTimeout(() => {
             if (audioCtx) audioCtx.resume();
           }, 100);
-          
+         
           setTimeout(() => {
             welcomeContainer.remove();
             overlay.style.transition = 'opacity 0.5s ease';
@@ -722,12 +670,10 @@
           }, 3000);
         });
       }
-
       function tryStart() {
         console.log('Creating start button...');
         createStartOverlay();
       }
-
       if (document.readyState === 'complete' || document.readyState === 'interactive') {
         setTimeout(tryStart, 120);
       } else {
@@ -735,7 +681,6 @@
       }
     })();
   </script>
-
   <script src="slider.js"></script>
   <script src="hanoi.js"></script>
   <script src="header-typing.js"></script>
