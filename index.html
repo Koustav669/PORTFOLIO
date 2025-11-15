@@ -52,6 +52,9 @@
       height: 460px;
       display: block;
       background: rgba(0,0,0,0.04);
+      /* FORCED CENTER ALIGNMENT */
+      left: 50%;
+      transform: translateX(-50%);
     }
     .slides {
       display: flex;
@@ -94,14 +97,12 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: url('bg.png') top center / cover no-repeat,
-                  url('BG.png') top center / cover no-repeat,
+      background: url('BG.png') top center / cover no-repeat,
                   url('https://via.placeholder.com/1920x1080/000033/00ffff?text=BG+LOAD+ERROR') top center / cover no-repeat;
       background-color: #000;
       z-index: -1;
       opacity: 0.7;
       pointer-events: none;
-      /* Force image */
       background-size: cover !important;
       background-position: center !important;
     }
@@ -277,7 +278,7 @@
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.05); opacity: 0.8; }
     }
-   
+  
     @keyframes welcomeEntrance {
       0% { transform: scale(0.5) rotateY(90deg); opacity: 0; filter: blur(20px); }
       30% { transform: scale(1.2) rotateY(0deg); opacity: 1; filter: blur(0px); }
@@ -285,7 +286,7 @@
       70% { transform: scale(1.1) rotateY(0deg); opacity: 1; filter: blur(0px); }
       100% { transform: scale(5) rotateX(90deg); opacity: 0; filter: blur(30px) brightness(3); }
     }
-   
+  
     @keyframes electricBurst {
       0%, 100% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
       25% { box-shadow: 0 0 40px #00ffff, 0 0 80px #0077ff, 0 0 120px #00eaff; }
@@ -326,7 +327,7 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
-   
+  
     .desktop-mode-mobile body {
       min-width: 1920px;
     }
@@ -400,11 +401,11 @@
     <div class="gallery-title"><h1>Gallery</h1></div>
     <div class="slider">
       <div class="slides">
-        <!-- FORCED IMAGE WITH FALLBACKS -->
+        <!-- FIXED: Correct case-sensitive filename -->
         <div class="slide">
-          <img 
-            src="my_picture.png" 
-            onerror="this.onerror=null; this.src='My_picture.png'; setTimeout(() => { if(this.naturalWidth===0) this.src='https://via.placeholder.com/800x600/001133/00ffff?text=Koustav+Das'; }, 100);"
+          <img
+            src="My_picture.png"
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600/001133/00ffff?text=Koustav+Das';"
             alt="Portfolio Profile Photo"
             style="opacity:0; transition:opacity 0.5s;"
             onload="this.style.opacity=1;">
@@ -423,13 +424,9 @@
   <canvas id="ai-bg-canvas"></canvas>
   <div class="ai-bg-overlay"></div>
   <div class="ai-bg-retina"></div>
-
-  <!-- PRELOAD CRITICAL IMAGES -->
-  <link rel="preload" href="bg.png" as="image">
+  <!-- PRELOAD CORRECT IMAGES ONLY -->
   <link rel="preload" href="BG.png" as="image">
-  <link rel="preload" href="my_picture.png" as="image">
   <link rel="preload" href="My_picture.png" as="image">
-
   <!-- All scripts unchanged -->
   <script>
     (function() {
@@ -624,7 +621,7 @@
           display: flex; align-items: center; justify-content: center;
           cursor: pointer; backdrop-filter: blur(10px);
         `;
-       
+      
         const button = document.createElement('div');
         button.style.cssText = `
           font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700;
@@ -634,31 +631,31 @@
           user-select: none;
         `;
         button.textContent = 'Click To See My Portfolio';
-       
+      
         overlay.appendChild(button);
         document.body.appendChild(overlay);
-       
+      
         overlay.addEventListener('click', () => {
           button.style.display = 'none';
-         
+        
           const welcomeContainer = document.createElement('div');
           welcomeContainer.style.cssText = `
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             display: flex; align-items: center; justify-content: center;
             z-index: 10000000; pointer-events: none; padding: 0 20px; box-sizing: border-box;
           `;
-         
+        
           const welcomeText = document.createElement('div');
           welcomeText.className = 'welcome-text';
           welcomeText.textContent = 'WELCOME';
           welcomeContainer.appendChild(welcomeText);
           document.body.appendChild(welcomeContainer);
-         
+        
           initAudio();
           setTimeout(() => {
             if (audioCtx) audioCtx.resume();
           }, 100);
-         
+        
           setTimeout(() => {
             welcomeContainer.remove();
             overlay.style.transition = 'opacity 0.5s ease';
