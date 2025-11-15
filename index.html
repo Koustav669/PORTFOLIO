@@ -89,21 +89,21 @@
     }
 
     .site-header {
-  position: relative;
-  z-index: 1;
-}
+      position: relative;
+      z-index: 1;
+    }
 
-.site-header::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: url('BG.png') top center no-repeat;
-  background-size: cover;
-  z-index: -1;
-}
+    .site-header::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('BG.png') top center no-repeat;
+      background-size: cover;
+      z-index: -1;
+    }
 
     .site-header {
       position: fixed;
@@ -419,6 +419,21 @@
     .desktop-mode-mobile body {
       min-width: 1920px;
     }
+
+    /* FIX: Center Gallery Title */
+    .gallery-title {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+    .gallery-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #d9faff;
+      text-shadow: 0 0 25px #009dff, 0 0 60px #0077ff, 0 0 120px #00eaff;
+      margin: 0;
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -480,7 +495,8 @@
     <div class="gallery-title"><h1>Gallery</h1></div>
     <div class="slider">
       <div class="slides">
-        <div class="slide"><img src="My_picture.jpg" alt="Portfolio Profile Photo"></div>
+        <!-- FIXED: Correct filename and extension -->
+        <div class="slide"><img src="My_picture.png" alt="Portfolio Profile Photo"></div>
         <div class="slide"><img src="images/pic2.jpg" alt="Featured 2"></div>
         <div class="slide"><img src="images/pic3.jpg" alt="Featured 3"></div>
       </div>
@@ -504,13 +520,10 @@
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       
       if (isMobile) {
-        // Set viewport to desktop width
         let viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
           viewport.setAttribute('content', 'width=1920, initial-scale=0.5, maximum-scale=1.0, user-scalable=yes');
         }
-        
-        // Add desktop mode class to body
         document.documentElement.classList.add('desktop-mode-mobile');
       }
     })();
@@ -548,7 +561,7 @@
         if (audioCtx.state === 'suspended') {
           audioCtx.resume().then(() => {
             audioUnlocked = true;
-            console.log('🔊 Audio unlocked and ready');
+            console.log('Audio unlocked and ready');
           }).catch(e => console.log('Audio resume failed:', e));
         } else {
           audioUnlocked = true;
@@ -608,7 +621,6 @@
       function startMarquee() {
         const phrase = "This is my PORTFOLIO.";
 
-        // populate and show
         marqueeText.textContent = phrase;
         marqueeContainer.style.display = 'block';
         marqueeContainer.style.visibility = 'visible';
@@ -617,10 +629,8 @@
         marqueeText.style.visibility = 'visible';
         marqueeText.style.opacity = '1';
 
-        // remove any existing interval
         if (window.__marqueeInterval) clearInterval(window.__marqueeInterval);
 
-        // ensure layout is up-to-date
         marqueeText.style.transition = 'none';
         marqueeText.style.opacity = '1';
         marqueeText.style.visibility = 'visible';
@@ -630,41 +640,34 @@
         const textW = marqueeText.offsetWidth;
         const viewportW = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-  // Position moving element fixed so transform is relative to viewport -> predictable
-  marqueeText.style.position = 'fixed';
-  marqueeText.style.zIndex = 99999;
-  const contRect = marqueeContainer.getBoundingClientRect();
-  const viewportH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-  let topPos = Math.round(contRect.top + contRect.height / 2);
-  // If computed position is outside the viewport, clamp to center
-  if (topPos < 40 || topPos > viewportH - 40) topPos = Math.round(viewportH / 2);
-  marqueeText.style.top = topPos + 'px';
-  marqueeText.style.left = '0px';
-  marqueeText.style.willChange = 'transform';
+        marqueeText.style.position = 'fixed';
+        marqueeText.style.zIndex = 99999;
+        const contRect = marqueeContainer.getBoundingClientRect();
+        const viewportH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        let topPos = Math.round(contRect.top + contRect.height / 2);
+        if (topPos < 40 || topPos > viewportH - 40) topPos = Math.round(viewportH / 2);
+        marqueeText.style.top = topPos + 'px';
+        marqueeText.style.left = '0px';
+        marqueeText.style.willChange = 'transform';
 
-        // start and end X in viewport coordinates
-        const startX = viewportW + 8; // slightly offscreen to the right
-        const endX = -textW - 8; // slightly offscreen to the left
+        const startX = viewportW + 8;
+        const endX = -textW - 8;
 
-        // duration proportional to travel distance (base 12s baseline)
         const baseDuration = 12000;
         const travel = Math.abs(startX - endX);
         const duration = Math.max(5000, Math.round(baseDuration * (travel / (viewportW + textW))));
 
         function runOnce() {
-          // reset to start (no transition)
           marqueeText.style.transition = 'none';
           marqueeText.style.transform = `translateX(${startX}px) translateY(-50%)`;
           void marqueeText.offsetWidth;
 
-          // animate to end
           requestAnimationFrame(() => {
             marqueeText.style.transition = `transform ${duration}ms linear`;
             marqueeText.style.transform = `translateX(${endX}px) translateY(-50%)`;
           });
         }
 
-        // Ensure container is visible
         marqueeContainer.style.display = 'block';
         marqueeContainer.style.visibility = 'visible';
         marqueeContainer.style.opacity = '1';
@@ -706,7 +709,6 @@
         finally { 
           setTimeout(() => {
             restoreHTMLAndHighlight();
-            // ensure marquee starts even if highlight didn't find phrase
             setTimeout(startMarquee, 220);
           }, 80);
         }
@@ -806,7 +808,7 @@
       }
 
       function tryStart() {
-        console.log('🎬 Creating start button...');
+        console.log('Creating start button...');
         createStartOverlay();
       }
 
